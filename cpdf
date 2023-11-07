@@ -1,0 +1,116 @@
+#!/bin/bash
+
+post_install() {
+    pulseaudio --start
+    sudo chmod +s /usr/bin/light
+}
+
+install_yay() {
+    (cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si)
+}
+
+pacman_dependencies=(
+    # fonts
+    ttf-joypixels
+    ttf-font-awesome
+    noto-fonts
+    noto-fonts-cjk
+
+    # base
+    xorg
+    xorg-xinit
+    i3
+    bluez
+    picom
+    polybar
+    firefox
+    arc-gtk-theme
+    arc-icon-theme
+
+    # volume
+    sox
+    alsa-utils
+    alsa-plugins
+    pulseaudio-alsa
+    pavucontrol
+
+    # tools
+    feh
+    rofi
+    fish
+    copyq
+    neovim
+    neovide
+    alacritty
+    numlockx
+    flameshot
+
+    jq
+    yad
+    socat
+    unzip
+    p7zip
+    light
+    ripgrep
+    inotify-tools
+)
+
+yay_dependencies=(
+    # fonts
+    consolas-font
+
+    # base
+    i3lock-color
+    brave-beta-bin
+)
+
+usage() {
+    cat <<END
+usage: $0 <opt>
+<opt>: -a: copy all files
+       -c: link .config/files
+       -f: copy fonts
+       -i: install dependent packages
+END
+    exit 1
+}
+
+while getopts :abncfi opt; do
+    case $opt in
+        a) a=1;;
+        c) c=1;;
+        f) f=1;;
+        i) i=1;;
+        *) usage
+    esac
+done
+
+if [[ -z $1 ]]; then usage; fi
+
+if [[ -n $a ]] || [[ -n $c ]]; then
+    rm -fr ~/.xinitrc
+    xinit="`pwd`/.xinitrc"
+    (set -x; ln -sf "$xinit" ~)
+
+    mkdir -p ~/.config
+    for cfg in `ls .config`; do
+        config="`pwd`/.config/$cfg"
+        eval "rm -fr ~/.config/$cfg"
+        (set -x; ln -sf "$config" ~/.config)
+    done
+fi
+
+if [[ -n $a ]] || [[ -n $f ]]; then
+    mkdir -p ~/.local/share/fonts
+    cp -v ./fonts/* ~/.local/share/fonts
+fi
+
+if [[ -n $a ]] || [[ -n $i ]]; then
+    sudo pacman -S --noconfirm "${pacman_dependencies[@]}"
+    if ! command -v yay; then install_yay; fi
+    yay -S --noconfirm "${yay_dependencies[@]}"
+    post_install
+fi

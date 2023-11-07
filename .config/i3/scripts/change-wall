@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+
+sleep_time=3m
+wall_dir=/cmn/anime_pictures
+curr_pid=$$
+
+kill_wall() {
+    wall_pid=$(cat /tmp/wall_pid 2>/dev/null)
+    rm -f /tmp/wall_pid
+
+    if [[ -n "$wall_pid" ]] && [[ "$wall_pid" -ne "$curr_pid" ]]; then
+        kill $wall_pid &>/dev/null
+    fi
+}
+
+exit_wall() {
+    kill_wall
+    exit 0
+}
+
+change_wall() {
+    feh --no-fehbg --bg-fill "$1"
+}
+
+open_wall() {
+    xdg-open `tail -1 /tmp/curr_bg`
+}
+
+if [[ -n "$1" ]]; then
+    open_wall
+    exit 0
+fi
+
+if [[ ! -d "$wall_dir" ]]; then
+    change_wall ~/dotfiles/imgs/sayu_bg.jpg
+fi
+
+kill_wall
+echo $curr_pid > /tmp/wall_pid
+trap exit_wall SIGINT
+
+while true; do
+    for img in $(find "$wall_dir" | shuf); do
+        change_wall "$img"
+        echo "$img" >> /tmp/curr_bg
+        sleep "$sleep_time"
+    done
+done

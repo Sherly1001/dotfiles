@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+wall_dir=/cmn/anime_pictures
+
+if [[ ! -d "$wall_dir" ]]; then
+    img=~/dotfiles/imgs/sayu_ls.jpg
+else
+    img=`find "$wall_dir" | shuf | head -1`
+fi
+
+i3lock \
+    --image "$img" \
+    --clock \
+    --time-str '%R' \
+    --indicator \
+    --ring-color bb00cc \
+    --line-color 00000000 \
+    --inside-color 00000088 \
+    --separator-color 00000000
