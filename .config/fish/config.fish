@@ -56,7 +56,7 @@ if status is-interactive
     end
 
     if [ (string match -r i $st) ]
-      set bk red
+      set bk yellow
     end
 
     set cl (set_color $cl)
