@@ -27,6 +27,7 @@ pacman_dependencies=(
     picom
     polybar
     firefox
+    bluez-utils
     arc-gtk-theme
     arc-icon-theme
 
