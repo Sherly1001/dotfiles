@@ -82,6 +82,30 @@ keymap('n', ';tv', ':bel vs term://fish<cr>', opts_sl)
 keymap('n', ';tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
 keymap('n', ';vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })
 
+keymap('n', ';d', '', {
+  callback = function()
+    local tpbl = {}
+    for _, tabnr in ipairs(vim.fn.range(1, vim.fn.tabpagenr('$'))) do
+      local ok, res = pcall(vim.fn['ctrlspace#api#Buffers'], tabnr)
+      if ok then
+        for bufnr, _ in pairs(res) do
+          table.insert(tpbl, tonumber(bufnr))
+        end
+      end
+    end
+
+    local deleted = 0
+    for _, bufnr in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
+      if vim.fn.bufexists(bufnr) == 1 and not vim.tbl_contains(tpbl, bufnr) then
+        vim.cmd('bwipeout ' .. bufnr)
+        deleted = deleted + 1
+      end
+    end
+
+    print('Deleted ' .. deleted .. ' buffers')
+  end
+})
+
 keymap('n', '<f2>', ':lua vim.lsp.buf.rename()<cr>', opts)
 keymap('n', '<s-k>', ':lua vim.lsp.buf.hover()<cr>', opts_sl)
 keymap('n', '<c-f>', ':lua vim.lsp.buf.format({ async = false })<cr>', opts_sl)
