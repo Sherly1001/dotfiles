@@ -65,7 +65,7 @@ yay_dependencies=(
 
     # base
     i3lock-color
-    brave-beta-bin
+    brave-bin
 )
 
 usage() {

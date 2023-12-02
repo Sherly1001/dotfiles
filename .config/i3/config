@@ -12,10 +12,10 @@ set $up k
 set $down j
 
 set $terminal alacritty
-set $broswer google-chrome-beta
+set $broswer brave
 set $broswer_private --incognito
-set $broswer_2 brave-beta
-set $broswer_2_private --incognito
+set $broswer_2 firefox
+set $broswer_2_private --private-window
 
 set $color_red              #E06C75
 set $color_dark_red         #BE5046
@@ -169,10 +169,10 @@ bindsym $mod+n move scratchpad
 bindsym $mod+Shift+n scratchpad show
 
 # i3 restart
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+e exit
+bindsym $mod+Shift+c exec --no-startup-id i3-msg reload
+bindsym $mod+Shift+r exec --no-startup-id i3-msg restart
+bindsym $mod+Shift+q exec --no-startup-id i3-msg kill
+bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 
 # binding keys
 bindsym $mod+Return             workspace $ws2, exec --no-startup-id $terminal
@@ -182,8 +182,6 @@ bindsym $mod+g                  exec --no-startup-id $broswer
 bindsym $mod+Shift+g            exec --no-startup-id $broswer $broswer_private
 bindsym $mod+b                  exec --no-startup-id $broswer_2
 bindsym $mod+Shift+b            exec --no-startup-id $broswer_2 $broswer_2_private
-bindsym $mod+m                  exec --no-startup-id firefox
-bindsym $mod+Shift+m            exec --no-startup-id firefox --private-window
 bindsym $mod+Mod2+Print         exec --no-startup-id flameshot gui
 bindsym $mod+p                  exec --no-startup-id rofi -show drun -modi drun
 bindsym $mod+r                  exec --no-startup-id rofi -show run
@@ -203,7 +201,7 @@ bindsym Mod2+XF86AudioMute        exec --no-startup-id amixer sset Master toggle
 default_border pixel 2
 default_floating_border normal
 # hide_edge_borders smart
-focus_follows_mouse yes
+focus_follows_mouse no
 
 gaps inner 10
 
