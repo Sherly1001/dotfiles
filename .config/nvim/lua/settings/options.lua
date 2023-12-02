@@ -10,13 +10,14 @@ opt.smartcase       = true
 opt.ignorecase      = true
 opt.wildignorecase  = true
 
-opt.cursorline = true
+opt.modeline    = true
+opt.cursorline  = true
 
 opt.hidden     = true
-opt.compatible = false
 opt.backup     = false
 opt.undofile   = false
 opt.swapfile   = false
+opt.compatible = false
 
 opt.encoding = 'utf-8'
 
@@ -45,6 +46,7 @@ if g.neovide then
   g.neovide_cursor_vfx_particle_density = 10.0
 
   opt.guifont = 'Consolas:h9'
+  opt.linespace = -2
   vim.cmd [[ nn <silent> <c-=> :call v:lua.Funcs.fontsize()<cr> ]]
   vim.cmd [[ nn <silent> <c--> :call v:lua.Funcs.fontsize(-1)<cr> ]]
 end
