@@ -12,6 +12,7 @@ set $up k
 set $down j
 
 set $terminal alacritty
+set $terminal_float --class TermFloat
 set $broswer brave
 set $broswer_private --incognito
 set $broswer_2 firefox
@@ -177,7 +178,8 @@ bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 # binding keys
 bindsym $mod+Return             workspace $ws2, exec --no-startup-id $terminal
 bindsym $mod+Shift+Return       exec --no-startup-id $terminal
-bindsym $mod+Ctrl+Shift+Return  exec --no-startup-id $terminal --class TermFloat
+bindsym $mod+Ctrl+Shift+Return  exec --no-startup-id $terminal $terminal_float
+bindsym $mod+i                  exec --no-startup-id $terminal $terminal_float -e htop
 bindsym $mod+g                  exec --no-startup-id $broswer
 bindsym $mod+Shift+g            exec --no-startup-id $broswer $broswer_private
 bindsym $mod+b                  exec --no-startup-id $broswer_2
@@ -205,7 +207,7 @@ focus_follows_mouse no
 
 gaps inner 10
 
-for_window [instance="TermFloat"] floating enabled
+for_window [instance="TermFloat"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="copyq"] floating enable
 for_window [class="Python"] floating enable
