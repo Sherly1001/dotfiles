@@ -22,7 +22,7 @@ get() {
   idx=$(((val - 1) * len / 100))
   icon=${icons[$idx]}
 
-  echo "%{F$yellow}$icon%{F-} $val"
+  echo "%{F$yellow}$icon%{F-} $val%"
 }
 
 change() {
