@@ -14,6 +14,7 @@ Plug 'kristijanhusak/vim-dadbod-completion'
 
 -- LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp-status.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
@@ -35,9 +36,6 @@ Plug 'mattn/emmet-vim'
 Plug('xianghongai/vscode-react-snippet', {
     ['do'] = 'yarn install || yarn build || true ',
 })
-
--- LSP status line
-Plug 'nvim-lua/lsp-status.nvim'
 
 -- base plugins
 Plug 'chrisbra/Colorizer'

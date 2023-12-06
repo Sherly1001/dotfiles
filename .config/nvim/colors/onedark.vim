@@ -703,6 +703,12 @@ if has("nvim")
   call s:h("DiagnosticWarn", { "fg": s:yellow })
   call s:h("DiagnosticInfo", { "fg": s:blue })
   call s:h("DiagnosticHint", { "fg": s:cyan })
+
+  call s:h("SttDiagnosticError", { "fg": s:red, "bg": s:cursor_grey })
+  call s:h("SttDiagnosticWarn", { "fg": s:yellow, "bg": s:cursor_grey })
+  call s:h("SttDiagnosticInfo", { "fg": s:blue, "bg": s:cursor_grey })
+  call s:h("SttDiagnosticHint", { "fg": s:cyan, "bg": s:cursor_grey })
+
   call s:h("DiagnosticUnderlineError", { "fg": s:red, "gui": "underline", "cterm": "underline" })
   call s:h("DiagnosticUnderlineWarn", { "fg": s:yellow, "gui": "underline", "cterm": "underline" })
   call s:h("DiagnosticUnderlineInfo", { "fg": s:blue, "gui": "underline", "cterm": "underline" })
