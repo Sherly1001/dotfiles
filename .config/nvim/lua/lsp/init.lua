@@ -1,6 +1,8 @@
 -- vi: sw=2 ts=2
 
 local m = {
+  'lsp.lsp',
+  'lsp.status',
   'lsp.lsp-cfg',
 }
 

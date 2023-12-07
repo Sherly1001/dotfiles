@@ -58,6 +58,7 @@ Plug 'TovarishFin/vim-solidity'
 Plug 'modocache/move.vim'
 Plug 'ollykel/v-vim'
 Plug 'elkowar/yuck.vim'
+Plug 'tikhomirov/vim-glsl'
 
 vim.call('plug#end')
 

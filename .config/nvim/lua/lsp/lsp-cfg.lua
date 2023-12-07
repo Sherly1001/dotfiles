@@ -2,8 +2,16 @@
 
 local system_signs = require('settings.signs')
 
-require('mason-lspconfig').setup()
-require('mason').setup {
+local cfg_ok, cfg = pcall(require, 'lspconfig')
+local mason_ok, mason = pcall(require, 'mason')
+local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
+
+if not cfg_ok or not mason_ok or not mason_lsp_ok then
+  return
+end
+
+mason_lsp.setup()
+mason.setup {
   ui = {
     border = 'rounded',
     icons = {
@@ -15,11 +23,16 @@ require('mason').setup {
 }
 
 -- setup lsp server
-local cfg = require('lspconfig')
-local cap = require('cmp_nvim_lsp').default_capabilities()
+local cmp_ok, cmp = pcall(require, 'cmp')
+local cap_ok, cap = pcall(require, 'cmp_nvim_lsp')
+
+if not cmp_ok or not cfg_ok or not cap_ok then
+  return
+end
+
+cap = cap.default_capabilities()
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 
-package.preload['lsp.lsp'] = nil
 local lsp = require('lsp.lsp')
 
 local gopts = {
@@ -28,15 +41,13 @@ local gopts = {
 
 for name, opt in pairs(lsp) do
   if opt then
-    opt = vim.tbl_extend('force', gopts, opt)
+    opt = vim.tbl_deep_extend('force', gopts, opt)
   end
 
   cfg[name].setup(opt)
 end
 
 -- setup nvim-cmp
-local cmp = require('cmp')
-
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -68,7 +79,8 @@ cmp.setup {
         cmp.select_next_item()
       elseif vim.fn['vsnip#available'](1) == 1 then
         feedkey('<Plug>(vsnip-expand-or-jump)', '')
-      elseif has_words_before() and vim.tbl_contains({'html', 'css', 'xsl'}, vim.o.filetype) then
+      elseif has_words_before() and
+          vim.tbl_contains({ 'html', 'css', 'xsl' }, vim.o.filetype) then
         feedkey('<Plug>(emmet-expand-abbr)', '')
       else
         fallback()
@@ -99,9 +111,9 @@ cmp.setup {
 
 local signs = {
   { name = 'DiagnosticSignError', text = system_signs.error },
-  { name = 'DiagnosticSignWarn', text = system_signs.warn },
-  { name = 'DiagnosticSignHint', text = system_signs.hint },
-  { name = 'DiagnosticSignInfo', text = system_signs.info },
+  { name = 'DiagnosticSignWarn',  text = system_signs.warn },
+  { name = 'DiagnosticSignHint',  text = system_signs.hint },
+  { name = 'DiagnosticSignInfo',  text = system_signs.info },
 }
 
 for _, sign in ipairs(signs) do
@@ -109,16 +121,12 @@ for _, sign in ipairs(signs) do
 end
 
 local config = {
-  virtual_text = {
-    source = 'if_many',
-    prefix = '●',
-  },
+  virtual_text = false,
+  update_in_insert = true,
+  severity_sort = true,
   signs = {
     active = signs,
   },
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
   float = {
     focusable = false,
     style = 'minimal',
@@ -135,6 +143,8 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = 'rounded',
 })
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = 'rounded',
-})
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = 'rounded',
+  }
+)

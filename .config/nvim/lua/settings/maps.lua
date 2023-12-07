@@ -13,6 +13,9 @@ keymap('i', '<c-j>', '<down>', opts)
 keymap('i', '<c-h>', '<left>', opts)
 keymap('i', '<c-l>', '<right>', opts)
 
+keymap('i', '<c-cr>', '<esc>A', opts_sl)
+keymap('i', '<s-cr>', '<esc>A;<esc>', opts_sl)
+
 keymap('i', '<c-s-v>', '<c-r><c-o>+', opts_sl)
 keymap('i', '<s-insert>', '<c-r><c-o>+', opts_sl)
 
@@ -71,6 +74,7 @@ keymap('n', ';rc', ':e ~/.config/nvim/init.lua<cr>', opts_sl)
 keymap('n', ';s', ':e ~/.config/nvim/lua/settings/options.lua<cr>', opts_sl)
 keymap('n', ';m', ':e ~/.config/nvim/lua/settings/maps.lua<cr>', opts_sl)
 keymap('n', ';l', ':e ~/.config/nvim/lua/lsp/lsp.lua<cr>', opts_sl)
+keymap('n', ';lc', ':e ~/.config/nvim/lua/lsp/lsp-cfg.lua<cr>', opts_sl)
 keymap('n', ';id', ':e ~/.config/nvim/lua/settings/indent.lua<cr>', opts_sl)
 
 keymap('n', ';fs', ':set foldmethod=syntax<cr>', opts_sl)
@@ -111,6 +115,7 @@ keymap('n', '<s-k>', ':lua vim.lsp.buf.hover()<cr>', opts_sl)
 keymap('n', '<c-f>', ':lua vim.lsp.buf.format({ async = false })<cr>', opts_sl)
 keymap('n', '<c-m>', ':lua vim.lsp.buf.code_action({ apply = true })<cr>', opts_sl)
 keymap('n', '<s-l>', ':lua vim.lsp.buf.definition({ reuse_win = true })<cr>', opts_sl)
+keymap('n', '<s-h>', ':lua vim.lsp.buf.references()<cr>', opts_sl)
 
 keymap('n', 'f', ':lua vim.diagnostic.open_float()<cr>', opts_sl)
 keymap('n', ']g', ':lua vim.diagnostic.goto_next()<cr>', opts_sl)
