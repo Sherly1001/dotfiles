@@ -1,19 +1,115 @@
 #!/usr/bin/bash
 
 wall_dir=/cmn/anime_pictures
+default_img=~/.config/i3/imgs/sayu_ls.jpg
 
-if [[ ! -d "$wall_dir" ]]; then
-    img=~/dotfiles/imgs/sayu_ls.jpg
-else
+img="$default_img"
+if [[ -d "$wall_dir" ]]; then
+    size=$(xdpyinfo | grep dimensions | cut -d' ' -f7)
+    rect="translate 20,%[fx:h-125] roundRectangle 0,0,280,100 10,10"
+
     img=`find "$wall_dir" | shuf | head -1`
+    tmp_img=/tmp/lock.jpg
+
+    magick "$img" \
+        -resize "$size^" \
+        -gravity Center \
+        -extent "$size" \
+        -fill black \
+        -colorize 40% \
+        -fill "#000a" \
+        -draw "$rect" \
+        "$tmp_img"
+
+    img="$tmp_img"
 fi
 
+locktext=""
+font="sans-serif"
+ringcolor=ffffffff
+insidecolor=00000000
+separatorcolor=00000000
+ringvercolor=ffffffff
+insidevercolor=00000000
+ringwrongcolor=ffffffff
+insidewrongcolor=d23c3dff
+timecolor=ffffffff
+time_format="%H:%M:%S"
+date_format="%A, %b %d"
+greetercolor=ffffffff
+layoutcolor=ffffffff
+keyhlcolor=d23c3dff
+bshlcolor=d23c3dff
+veriftext="Verifying..."
+verifcolor=ffffffff
+wrongtext="Failure!"
+wrongcolor=d23c3dff
+modifcolor=d23c3dff
+bgcolor=000000ff
+
+fontlg=32
+fontmd=16
+fontsm=12
+
+dunstctl set-paused true
 i3lock \
     --image "$img" \
-    --clock \
-    --time-str '%R' \
-    --indicator \
-    --ring-color bb00cc \
-    --line-color 00000000 \
-    --inside-color 00000088 \
-    --separator-color 00000000
+    --color "$bgcolor" \
+    --ind-pos="x+250:y+h-80" \
+    --radius=25 \
+    --ring-width=5 \
+    --inside-color="$insidecolor" \
+    --ring-color="$ringcolor" \
+    --separator-color=$separatorcolor \
+    --insidever-color="$insidevercolor" \
+    --insidewrong-color="$insidewrongcolor" \
+    --ringver-color="$ringvercolor" \
+    --ringwrong-color="$ringwrongcolor" \
+    --line-uses-inside \
+    --keyhl-color="$keyhlcolor" \
+    --bshl-color="$bshlcolor" \
+    --clock --force-clock \
+    --time-pos="ix-200:iy" \
+    --time-align 1 \
+    --time-str "$time_format" \
+    --time-color="$timecolor" \
+    --time-font="$font" \
+    --time-size="$fontlg" \
+    --date-pos="ix-200:iy+32" \
+    --date-align 1 \
+    --date-str "$date_format" \
+    --date-color="$timecolor" \
+    --date-font="$font" \
+    --date-size="$fontmd" \
+    --greeter-pos="ix-200:iy+32" \
+    --greeter-align 1 \
+    --greeter-text "$locktext" \
+    --greeter-color="$greetercolor" \
+    --greeter-font="$font" \
+    --greeter-size="$fontmd" \
+    --layout-pos="ix-200:iy+32" \
+    --layout-align 1 \
+    --layout-color="$layoutcolor" \
+    --layout-font="$font" \
+    --layout-size="$fontsm" \
+    --verif-pos="ix:iy-34" \
+    --verif-align 0 \
+    --verif-text="$veriftext" \
+    --verif-color="$verifcolor" \
+    --verif-font="$font" \
+    --verif-size="$fontsm" \
+    --wrong-pos="ix:iy-34" \
+    --wrong-align 0 \
+    --wrong-text="$wrongtext" \
+    --wrong-color="$wrongcolor" \
+    --wrong-font="$font" \
+    --wrong-size="$fontsm" \
+    --modif-pos="ix:iy+43" \
+    --modif-align 0 \
+    --modif-size="$fontsm" \
+    --modif-color="$modifcolor" \
+    --noinput-text="" \
+    --nofork \
+    --ignore-empty-password \
+    --pass-power-keys
+dunstctl set-paused false

@@ -56,6 +56,7 @@ pacman_dependencies=(
     p7zip
     light
     ripgrep
+    imagemagick
     inotify-tools
 )
 

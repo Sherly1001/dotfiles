@@ -32,7 +32,8 @@ if [[ -n "$1" ]]; then
 fi
 
 if [[ ! -d "$wall_dir" ]]; then
-    change_wall ~/dotfiles/imgs/sayu_bg.jpg
+    change_wall ~/.config/i3/imgs/sayu_bg.jpg
+    exit 0
 fi
 
 kill_wall
