@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 format="+ %a %b %d, %R"
 posx=-130

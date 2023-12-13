@@ -1,4 +1,4 @@
-# vi: ft=sh sw=2 ts=2
+#!/usr/bin/bash
 
 TMP_DIR=/tmp/eww
 
@@ -14,27 +14,27 @@ sound=/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 yellow=`polybar -q -d yellow colors`
 
 get() {
-  cur=`cat "$brightness"`
-  max=`cat "$max_brightness"`
-  val=$((cur * 100 / $max))
+    cur=`cat "$brightness"`
+    max=`cat "$max_brightness"`
+    val=$((cur * 100 / $max))
 
-  len=${#icons[@]}
-  idx=$(((val - 1) * len / 100))
-  icon=${icons[$idx]}
+    len=${#icons[@]}
+    idx=$(((val - 1) * len / 100))
+    icon=${icons[$idx]}
 
-  echo "%{F$yellow}$icon%{F-} $val%"
+    echo "%{F$yellow}$icon%{F-} $val%"
 }
 
 change() {
-  light $1
-  # play "$sound" &>/dev/null &
+    light $1
+    # play "$sound" &>/dev/null &
 }
 
 watch() {
-  get
-  while inotifywait -qq -e modify "$brightness"; do
     get
-  done
+    while inotifywait -qq -e modify "$brightness"; do
+        get
+    done
 }
 
 cmd="$1"

@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+mkdir -p /tmp/polybar
+
+pkill polybar
+for monitor in $(xrandr | sed -nE 's/ connected.*$//p'); do
+    MONITOR=$monitor polybar -r main &>/tmp/polybar/$monitor.log &
+done
