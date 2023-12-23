@@ -1,5 +1,7 @@
 -- vi: sw=2 ts=2
 
+vim.g.mapleader = ';'
+
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = false }
 local opts_sl = { noremap = true, silent = true }
@@ -32,15 +34,24 @@ keymap('t', '<c-n>', '<c-\\><c-n>', opts_sl)
 keymap('t', '<c-w>', '<c-\\><c-n><c-w>', opts_sl)
 
 -- normal mode
-keymap('n', 'Q', ':q!<cr>', opts_sl)
 keymap('n', 'X', ':x<cr>', opts_sl)
+keymap('n', 'W', ':w<cr>', opts_sl)
+keymap('n', 'Q', '', {
+  callback = function ()
+    if vim.o.filetype == 'nerdtree' then
+      vim.fn.execute('q', 'silent!')
+    else
+      vim.fn.execute('q!', 'silent!')
+    end
+  end
+})
 
 keymap('n', '<a-j>', '<c-]>', opts_sl)
 keymap('n', '<a-k>', '<c-t>', opts_sl)
 
 keymap('n', '<c-t>', ':tabe<cr>', opts_sl)
 keymap('n', '<s-t>', ':tab sp<cr>', opts_sl)
-keymap('n', '<a-t>', ':tabe .<cr>', opts_sl)
+keymap('n', '<a-t>', ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
 keymap('n', '<a-h>', ':tabp<cr>', opts_sl)
 keymap('n', '<a-l>', ':tabn<cr>', opts_sl)
 
@@ -69,46 +80,25 @@ keymap('n', '<c-k>', ':res -5<cr>', opts_sl)
 keymap('n', '<c-h>', ':vert res +5<cr>', opts_sl)
 keymap('n', '<c-l>', ':vert res -5<cr>', opts_sl)
 
-keymap('n', ';rl', ':so ~/.config/nvim/init.lua<cr>', opts_sl)
-keymap('n', ';rc', ':e ~/.config/nvim/init.lua<cr>', opts_sl)
-keymap('n', ';s', ':e ~/.config/nvim/lua/settings/options.lua<cr>', opts_sl)
-keymap('n', ';m', ':e ~/.config/nvim/lua/settings/maps.lua<cr>', opts_sl)
-keymap('n', ';l', ':e ~/.config/nvim/lua/lsp/lsp.lua<cr>', opts_sl)
-keymap('n', ';lc', ':e ~/.config/nvim/lua/lsp/lsp-cfg.lua<cr>', opts_sl)
-keymap('n', ';id', ':e ~/.config/nvim/lua/settings/indent.lua<cr>', opts_sl)
+keymap('n', '<leader>rl', ':so ~/.config/nvim/init.lua<cr>', opts_sl)
+keymap('n', '<leader>rc', ':e ~/.config/nvim/init.lua<cr>', opts_sl)
+keymap('n', '<leader>s', ':e ~/.config/nvim/lua/settings/options.lua<cr>', opts_sl)
+keymap('n', '<leader>m', ':e ~/.config/nvim/lua/settings/maps.lua<cr>', opts_sl)
+keymap('n', '<leader>l', ':e ~/.config/nvim/lua/lsp/lsp.lua<cr>', opts_sl)
+keymap('n', '<leader>lc', ':e ~/.config/nvim/lua/lsp/lsp-cfg.lua<cr>', opts_sl)
+keymap('n', '<leader>id', ':e ~/.config/nvim/lua/settings/indent.lua<cr>', opts_sl)
 
-keymap('n', ';fs', ':set foldmethod=syntax<cr>', opts_sl)
-keymap('n', ';fm', ':set foldmethod=manual<cr>', opts_sl)
+keymap('n', '<leader>fs', ':set foldmethod=syntax<cr>', opts_sl)
+keymap('n', '<leader>fm', ':set foldmethod=manual<cr>', opts_sl)
 keymap('n', '<cr>', [[ foldlevel('.') > 0 ? 'za' : 'j' ]], { expr = true })
 
-keymap('n', ';cl', ':ColorToggle<cr>', opts_sl)
-keymap('n', ';tv', ':bel vs term://fish<cr>', opts_sl)
-keymap('n', ';tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
-keymap('n', ';vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })
+keymap('n', '<leader>z', ':lua Funcs.nerdtree()<cr>', opts_sl)
+keymap('n', '<leader>cl', ':ColorToggle<cr>', opts_sl)
+keymap('n', '<leader>tv', ':bel vs term://fish<cr>', opts_sl)
+keymap('n', '<leader>tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
+keymap('n', '<leader>vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })
 
-keymap('n', ';d', '', {
-  callback = function()
-    local tpbl = {}
-    for _, tabnr in ipairs(vim.fn.range(1, vim.fn.tabpagenr('$'))) do
-      local ok, res = pcall(vim.fn['ctrlspace#api#Buffers'], tabnr)
-      if ok then
-        for bufnr, _ in pairs(res) do
-          table.insert(tpbl, tonumber(bufnr))
-        end
-      end
-    end
-
-    local deleted = 0
-    for _, bufnr in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
-      if vim.fn.bufexists(bufnr) == 1 and not vim.tbl_contains(tpbl, bufnr) then
-        vim.cmd('bwipeout ' .. bufnr)
-        deleted = deleted + 1
-      end
-    end
-
-    print('Deleted ' .. deleted .. ' buffers')
-  end
-})
+keymap('n', '<leader>d', ':lua Funcs.delete_hidden_bufs()<cr>', opts)
 
 keymap('n', '<f2>', ':lua vim.lsp.buf.rename()<cr>', opts)
 keymap('n', '<s-k>', ':lua vim.lsp.buf.hover()<cr>', opts_sl)

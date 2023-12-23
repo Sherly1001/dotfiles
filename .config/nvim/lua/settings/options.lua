@@ -56,11 +56,12 @@ g.user_emmet_leader_key = ','
 g.netrw_liststyle = 3
 g.netrw_browser_split = 4
 
+g.NERDTreeQuitOnOpen        =   true
 g.NERDTreeMinimalUI         =   true
 g.NERDTreeMinimalMenu       =   true
 g.NERDTreeShowHidden        =   true
 g.NERDTreeShowLineNumbers   =   true
-g.NERDTreeWinSize           =   24
+g.NERDTreeWinSize           =   36
 g.NERDTreeStatusline        =   "%{''}"
 
 g.rustfmt_options = "--edition 2021"

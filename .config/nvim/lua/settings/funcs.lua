@@ -28,7 +28,7 @@ function Funcs.bufsNum(nr)
     return ''
   end
 
-  local smallNumbers = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'}
+  local smallNumbers = { '⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹' }
   local strNr = tostring(nr)
 
   local str = ''
@@ -103,9 +103,53 @@ end
 
 function Funcs.fontsize(step)
   step = step or 1
-  local font = vim.api.nvim_exec('echo &guifont', true)
-  if #font < 1 then return end
+  local font = vim.o.guifont
+
+  if #font < 1 then
+    vim.o.guifont = 'Consolas:h9'
+    return
+  end
+
   local ff = vim.split(font, ':h')
+  if ff[2] + step < 1 then return end
+
   local new = ff[1] .. ':h' .. (ff[2] + step)
-  vim.cmd('set guifont=' .. new)
+  vim.o.guifont = new
+end
+
+function Funcs.delete_hidden_bufs()
+  local tpbl = {}
+  for _, tabnr in ipairs(vim.fn.range(1, vim.fn.tabpagenr('$'))) do
+    local ok, res = pcall(vim.fn['ctrlspace#api#Buffers'], tabnr)
+    if ok then
+      for bufnr, _ in pairs(res) do
+        table.insert(tpbl, tonumber(bufnr))
+      end
+    end
+  end
+
+  local deleted = 0
+  for _, bufnr in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
+    if vim.fn.bufexists(bufnr) == 1 and
+        not vim.tbl_contains(tpbl, bufnr) and
+        vim.fn.getbufvar(bufnr, '&filetype') ~= 'nerdtree' then
+      vim.cmd('bwipeout ' .. bufnr)
+      deleted = deleted + 1
+    end
+  end
+
+  print('Deleted ' .. deleted .. ' buffers')
+end
+
+local function is_nerdtree_open()
+  return vim.fn.exists('t:NERDTreeBufName') and vim.fn.bufwinnr('t:NERDTreeBufName') ~= -1
+end
+
+function Funcs.nerdtree()
+  if is_nerdtree_open() then return end
+  local previous_winnr = vim.fn.winnr('$')
+  vim.fn.execute('NERDTreeMirror', 'silent!')
+  if previous_winnr == vim.fn.winnr('$') then
+    vim.fn.execute('NERDTreeToggle', 'silent!')
+  end
 end
