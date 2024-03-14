@@ -7,8 +7,12 @@ if [ $tty = "/dev/tty1" ]
   startx &>/tmp/xinit.log
 end
 
+alias sn "screen -S"
+alias sr "screen -r"
+alias sls "screen -ls"
+
 alias vi "nvim"
-alias nv "neovide --multigrid"
+alias nv "neovide"
 alias nu "nix-env --uninstall"
 
 alias dp "docker-compose"
