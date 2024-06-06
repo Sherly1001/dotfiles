@@ -27,6 +27,7 @@ opt.backspace = '2'
 
 opt.timeoutlen = 250
 opt.updatetime = 100
+opt.redrawtime = 5000
 
 opt.list = true
 opt.listchars = 'tab:>-,trail:.'
@@ -39,6 +40,9 @@ opt.statusline = '%!v:lua.Funcs.stt()'
 vim.cmd [[ colorscheme onedark ]]
 
 if g.neovide then
+  g.neovide_refresh_rate = 60
+  g.neovide_refresh_rate_idle = 5
+
   g.neovide_cursor_antialiasing     = true
   g.neovide_cursor_animation_length = 0.13
   g.neovide_cursor_vfx_opacity      = 500.0

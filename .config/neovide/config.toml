@@ -1,0 +1,8 @@
+fork = true
+frame = "full"
+idle = true
+no-multigrid = false
+tabs = false
+theme = "auto"
+title-hidden = true
+vsync = false
