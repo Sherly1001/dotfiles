@@ -725,6 +725,8 @@ if has("nvim")
   hi link LspDiagnosticsUnderlineInformation DiagnosticUnderlineInfo
   hi link LspDiagnosticsUnderlineHint DiagnosticUnderlineHint
   " }}}
+
+  call s:h("NormalFloat", { "bg": s:background })
 endif
 
 " }}}
