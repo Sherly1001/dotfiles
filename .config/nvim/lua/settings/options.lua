@@ -37,6 +37,9 @@ opt.showtabline = 2
 opt.tabline = '%!v:lua.Funcs.tabline()'
 opt.statusline = '%!v:lua.Funcs.stt()'
 
+opt.grepprg = 'rg --smart-case --vimgrep --sort=path'
+opt.grepformat = '%f:%l:%c:%m'
+
 vim.cmd [[ colorscheme onedark ]]
 
 if g.neovide then
@@ -77,6 +80,7 @@ g.webdevicons_enable = 1
 g.webdevicons_enable_nerdtree = 1
 
 g.db_ui_show_help = 0
+g.db_ui_execute_on_save = 0
 
 g.AutoPairsMapCh = 0
 
@@ -115,6 +119,11 @@ g.vimtex_compiler_latexmk_engines = {
 }
 
 local au = {}
+
+au['syntax'] = {
+  { 'BufNewFile', '*', 'syntax sync fromstart' },
+  { 'BufReadPost', '*', 'syntax sync fromstart' },
+}
 
 au['dynamic_startcase'] = {
   { 'CmdLineEnter', ':', 'set nosmartcase' },

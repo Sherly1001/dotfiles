@@ -1,5 +1,8 @@
 -- vi: ts=2 sw=2
 
+local vue_language_server_path = vim.fn.expand(
+  '$HOME/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server')
+
 local prettier_fmt = {
   formatCommand = 'prettier --stdin-filepath ${INPUT}',
   formatStdin = true,
@@ -57,6 +60,16 @@ local lsp = {
       rc.documentFormattingProvider = false
       rc.documentRangeFormattingProvider = false
     end,
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = vue_language_server_path,
+          languages = { 'vue' },
+        },
+      },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
   efm = {
     filetypes = vim.tbl_keys(langs),

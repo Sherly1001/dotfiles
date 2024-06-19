@@ -5,8 +5,10 @@ vim.call('plug#begin', '~/.local/share/nvim/plugged')
 -- utils plugins
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 Plug 'lervag/vimtex'
+Plug 'numToStr/Comment.nvim'
 Plug 'Asheq/close-buffers.vim'
 Plug 'mg979/vim-visual-multi'
+Plug 'nvim-tree/nvim-web-devicons'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
@@ -49,9 +51,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 -- git plugins
 Plug 'zivyangll/git-blame.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'sindrets/diffview.nvim'
 
 -- lang plugins
-Plug 'posva/vim-vue'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'TovarishFin/vim-solidity'
@@ -65,6 +67,11 @@ vim.call('plug#end')
 local ibl_ok, ibl = pcall(require, 'ibl')
 if ibl_ok then
     ibl.setup()
+end
+
+local cmt_ok, cmt = pcall(require, 'Comment')
+if cmt_ok then
+    cmt.setup()
 end
 
 package.loaded['settings'] = nil

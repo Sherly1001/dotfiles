@@ -34,10 +34,8 @@ keymap('t', '<c-n>', '<c-\\><c-n>', opts_sl)
 keymap('t', '<c-w>', '<c-\\><c-n><c-w>', opts_sl)
 
 -- normal mode
-keymap('n', 'X', ':x<cr>', opts_sl)
-keymap('n', 'W', ':w<cr>', opts_sl)
 keymap('n', 'Q', '', {
-  callback = function ()
+  callback = function()
     if vim.o.filetype == 'nerdtree' then
       vim.fn.execute('q', 'silent!')
     else
@@ -45,6 +43,9 @@ keymap('n', 'Q', '', {
     end
   end
 })
+
+vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', { nargs = '+' })
+keymap('n', 'F', ':Lrg ', opts)
 
 keymap('n', '<a-j>', '<c-]>', opts_sl)
 keymap('n', '<a-k>', '<c-t>', opts_sl)
@@ -123,3 +124,5 @@ keymap('n', '<c-i>', '', {
 
 keymap('n', 'gf', ':GitGutterFold<cr>', opts)
 keymap('n', 'gl', ':call gitblame#echo()<cr>', opts_sl)
+keymap('n', 'gv', ':DiffviewOpen<cr>', opts_sl)
+keymap('n', 'gc', ':DiffviewClose<cr>', opts_sl)

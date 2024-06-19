@@ -117,6 +117,16 @@ function Funcs.fontsize(step)
   vim.o.guifont = new
 end
 
+local function is_allowed_buf_types(buf_type)
+  local allowed_buf_types = { 'nerdtree', 'dbui', 'dbout' }
+  for _, type in ipairs(allowed_buf_types) do
+    if buf_type == type then
+      return true
+    end
+  end
+  return false
+end
+
 function Funcs.delete_hidden_bufs()
   local tpbl = {}
   for _, tabnr in ipairs(vim.fn.range(1, vim.fn.tabpagenr('$'))) do
@@ -132,7 +142,7 @@ function Funcs.delete_hidden_bufs()
   for _, bufnr in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
     if vim.fn.bufexists(bufnr) == 1 and
         not vim.tbl_contains(tpbl, bufnr) and
-        vim.fn.getbufvar(bufnr, '&filetype') ~= 'nerdtree' then
+        not is_allowed_buf_types(vim.fn.getbufvar(bufnr, '&filetype')) then
       vim.cmd('bwipeout ' .. bufnr)
       deleted = deleted + 1
     end
