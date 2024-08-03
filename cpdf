@@ -43,6 +43,8 @@ pacman_dependencies=(
     rofi
     fish
     copyq
+    xdotool
+    xbindkeys
     neovim
     neovide
     alacritty

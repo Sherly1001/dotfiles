@@ -13,10 +13,10 @@ set $down j
 
 set $terminal alacritty
 set $terminal_float --class TermFloat
-set $broswer brave
-set $broswer_private --incognito
-set $broswer_2 firefox
-set $broswer_2_private --private-window
+set $browser brave
+set $browser_private --incognito
+set $browser_2 firefox
+set $browser_2_private --private-window
 
 set $color_red              #E06C75
 set $color_dark_red         #BE5046
@@ -148,7 +148,7 @@ mode "resize" {
 bindsym $mod+backslash mode "resize"
 
 # colorclass            border          backgr.         text            indicator           child_border
-client.focused          $color_green    $color_black    $color_white    $color_yellow       $color_green
+client.focused          $color_green    $color_green    $color_black    $color_yellow       $color_green
 client.focused_inactive $color_black    $color_black    $color_white    $color_comment_grey $color_black
 client.unfocused        $color_black    $color_black    $color_white    $color_comment_grey $color_black
 client.urgent           $color_red      $color_red      $color_white    $color_red          $color_red
@@ -180,10 +180,10 @@ bindsym $mod+Return             workspace $ws2, exec --no-startup-id $terminal
 bindsym $mod+Shift+Return       exec --no-startup-id $terminal
 bindsym $mod+Ctrl+Shift+Return  exec --no-startup-id $terminal $terminal_float
 bindsym $mod+i                  exec --no-startup-id $terminal $terminal_float -e htop
-bindsym $mod+g                  exec --no-startup-id $broswer
-bindsym $mod+Shift+g            exec --no-startup-id $broswer $broswer_private
-bindsym $mod+b                  exec --no-startup-id $broswer_2
-bindsym $mod+Shift+b            exec --no-startup-id $broswer_2 $broswer_2_private
+bindsym $mod+g                  exec --no-startup-id $browser
+bindsym $mod+Shift+g            exec --no-startup-id $browser $browser_private
+bindsym $mod+b                  exec --no-startup-id $browser_2
+bindsym $mod+Shift+b            exec --no-startup-id $browser_2 $browser_2_private
 bindsym $mod+Mod2+Print         exec --no-startup-id flameshot gui
 bindsym $mod+p                  exec --no-startup-id rofi -show drun -modi drun
 bindsym $mod+r                  exec --no-startup-id rofi -show run
@@ -213,6 +213,7 @@ for_window [class="copyq"] floating enable
 for_window [class="Python"] floating enable
 for_window [class="Blueberry.py"] floating enable
 for_window [class="Pavucontrol"] floating enable
+for_window [title="SimpleScreenRecorder"] floating enable
 for_window [class="gnuplot_qt"] floating enable
 for_window [class="Slack"] floating enable
 for_window [class="slack"] sticky enable
@@ -222,6 +223,7 @@ for_window [urgent="latest"] focus
 exec --no-startup-id xinput set-prop 'DELL0844:00 04F3:3074 Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id xinput set-prop 'DELL0844:00 04F3:3074 Touchpad' 'libinput Natural Scrolling Enabled' 1
 exec --no-startup-id picom -b && ~/.config/polybar/scripts/launch
+exec --no-startup-id killall -q xbindkeys; xbindkeys -fg ~/.config/i3/config.scm
 exec --no-startup-id dunst
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id numlockx
