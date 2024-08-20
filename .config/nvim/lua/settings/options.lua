@@ -31,7 +31,7 @@ opt.redrawtime = 5000
 
 opt.list = true
 opt.listchars = 'tab:>-,trail:.'
-opt.fillchars = 'vert: ,fold: '
+opt.fillchars = 'vert:┃,fold: '
 
 opt.showtabline = 2
 opt.tabline = '%!v:lua.Funcs.tabline()'
@@ -83,6 +83,11 @@ g.db_ui_show_help = 0
 g.db_ui_execute_on_save = 0
 
 g.AutoPairsMapCh = 0
+
+g.gitgutter_sign_added = '┃'
+g.gitgutter_sign_modified = '┃'
+g.gitgutter_sign_removed = '┃'
+g.gitgutter_sign_modified_removed = '┃'
 
 g.ctrlp_cmd = 'CtrlPMixed'
 g.ctrlp_working_path_mode = 'ra'
