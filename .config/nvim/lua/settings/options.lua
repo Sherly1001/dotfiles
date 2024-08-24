@@ -31,7 +31,7 @@ opt.redrawtime = 5000
 
 opt.list = true
 opt.listchars = 'tab:>-,trail:.'
-opt.fillchars = 'vert:┃,fold: '
+opt.fillchars = 'vert:│,fold: '
 
 opt.showtabline = 2
 opt.tabline = '%!v:lua.Funcs.tabline()'
@@ -52,7 +52,7 @@ if g.neovide then
   g.neovide_cursor_vfx_mode         = 'railgun'
   g.neovide_cursor_vfx_particle_density = 10.0
 
-  opt.guifont = 'Consolas:h9'
+  opt.guifont = 'Source Code Pro:h9'
   opt.linespace = -2
   vim.cmd [[ nn <silent> <c-=> :call v:lua.Funcs.fontsize()<cr> ]]
   vim.cmd [[ nn <silent> <c--> :call v:lua.Funcs.fontsize(-1)<cr> ]]
@@ -84,10 +84,10 @@ g.db_ui_execute_on_save = 0
 
 g.AutoPairsMapCh = 0
 
-g.gitgutter_sign_added = '┃'
-g.gitgutter_sign_modified = '┃'
-g.gitgutter_sign_removed = '┃'
-g.gitgutter_sign_modified_removed = '┃'
+g.gitgutter_sign_added = '│'
+g.gitgutter_sign_modified = '│'
+g.gitgutter_sign_removed = '│'
+g.gitgutter_sign_modified_removed = '│'
 
 g.ctrlp_cmd = 'CtrlPMixed'
 g.ctrlp_working_path_mode = 'ra'
