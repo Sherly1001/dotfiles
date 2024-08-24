@@ -52,7 +52,7 @@ if g.neovide then
   g.neovide_cursor_vfx_mode         = 'railgun'
   g.neovide_cursor_vfx_particle_density = 10.0
 
-  opt.guifont = 'Source Code Pro:h9'
+  opt.guifont = 'Source Code Pro:h8'
   opt.linespace = -2
   vim.cmd [[ nn <silent> <c-=> :call v:lua.Funcs.fontsize()<cr> ]]
   vim.cmd [[ nn <silent> <c--> :call v:lua.Funcs.fontsize(-1)<cr> ]]
