@@ -40,6 +40,7 @@ Plug('xianghongai/vscode-react-snippet', {
 })
 
 -- base plugins
+Plug 'bkad/CamelCaseMotion'
 Plug 'chrisbra/Colorizer'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'

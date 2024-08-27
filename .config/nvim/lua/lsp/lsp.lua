@@ -1,7 +1,13 @@
 -- vi: ts=2 sw=2
 
-local vue_language_server_path = vim.fn.expand(
-  '$HOME/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server')
+local vue_language_server_path = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server')
+
+local function ignore_default_formatter(client)
+  local rc = client.server_capabilities
+  -- vim.api.nvim_echo({{vim.inspect(rc)}}, true, {})
+  rc.documentFormattingProvider = false
+  rc.documentRangeFormattingProvider = false
+end
 
 local prettier_fmt = {
   formatCommand = 'prettier --stdin-filepath ${INPUT}',
@@ -33,7 +39,6 @@ local langs = {
 local lsp = {
   texlab = {},
   html = {},
-  volar = {},
   vls = {},
   gopls = {},
   pyright = {},
@@ -53,13 +58,16 @@ local lsp = {
       },
     },
   },
+  volar = {
+    on_attach = ignore_default_formatter,
+    init_options = {
+      vue = {
+        version = "2.6",
+      },
+    },
+  },
   tsserver = {
-    on_attach = function(client)
-      local rc = client.server_capabilities
-      -- vim.api.nvim_echo({{vim.inspect(rc)}}, true, {})
-      rc.documentFormattingProvider = false
-      rc.documentRangeFormattingProvider = false
-    end,
+    on_attach = ignore_default_formatter,
     init_options = {
       plugins = {
         {

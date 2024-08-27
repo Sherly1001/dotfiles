@@ -6,6 +6,8 @@ local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = false }
 local opts_sl = { noremap = true, silent = true }
 
+local is_mac = vim.fn.has('unix') and vim.fn.system("uname -s"):gsub('%s+', '') == 'Darwin'
+
 -- insert mode
 keymap('i', 'jk', '<esc>', opts)
 keymap('i', 'kj', '<esc>', opts)
@@ -20,9 +22,15 @@ keymap('i', '<s-cr>', '<esc>A;<esc>', opts_sl)
 
 keymap('i', '<c-s-v>', '<c-r><c-o>+', opts_sl)
 keymap('i', '<s-insert>', '<c-r><c-o>+', opts_sl)
+if is_mac then
+  keymap('i', '<D-v>', '<c-r><c-o>+', opts_sl)
+end
 
 keymap('c', '<c-s-v>', '<c-r><c-o>+', opts)
 keymap('c', '<s-insert>', '<c-r><c-o>+', opts)
+if is_mac then
+  keymap('c', '<D-v>', '<c-r><c-o>+', opts)
+end
 
 -- visual mode
 keymap('v', '<c-c>', '"+y', opts_sl)
@@ -34,6 +42,9 @@ keymap('t', '<c-n>', '<c-\\><c-n>', opts_sl)
 keymap('t', '<c-w>', '<c-\\><c-n><c-w>', opts_sl)
 
 -- normal mode
+keymap('n', '<space>', 'f', opts)
+keymap('n', '<s-space>', 'F', opts)
+
 keymap('n', 'Q', '', {
   callback = function()
     if vim.o.filetype == 'nerdtree' then
@@ -47,14 +58,28 @@ keymap('n', 'Q', '', {
 vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', { nargs = '+' })
 keymap('n', 'F', ':Lrg ', opts)
 
+if is_mac then
+  keymap('n', '<a-space>', ':CtrlSpace<cr>', opts_sl)
+end
+
 keymap('n', '<a-j>', '<c-]>', opts_sl)
 keymap('n', '<a-k>', '<c-t>', opts_sl)
+if is_mac then
+  keymap('n', '∆', '<c-]>', opts_sl)
+  keymap('n', '˚', '<c-t>', opts_sl)
+end
 
 keymap('n', '<c-t>', ':tabe<cr>', opts_sl)
 keymap('n', '<s-t>', ':tab sp<cr>', opts_sl)
+
 keymap('n', '<a-t>', ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
 keymap('n', '<a-h>', ':tabp<cr>', opts_sl)
 keymap('n', '<a-l>', ':tabn<cr>', opts_sl)
+if is_mac then
+  keymap('n', '†', ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
+  keymap('n', '˙', ':tabp<cr>', opts_sl)
+  keymap('n', '¬', ':tabn<cr>', opts_sl)
+end
 
 keymap('n', '<a-left>', ':tabp<cr>', opts_sl)
 keymap('n', '<a-right>', ':tabn<cr>', opts_sl)
@@ -63,6 +88,10 @@ keymap('n', '<a-s-h>', ':tabm -1<cr>', opts_sl)
 keymap('n', '<a-s-l>', ':tabm +1<cr>', opts_sl)
 keymap('n', '<a-s-left>', ':tabm -1<cr>', opts_sl)
 keymap('n', '<a-s-right>', ':tabm +1<cr>', opts_sl)
+if is_mac then
+  keymap('n', 'Ó', ':tabm -1<cr>', opts_sl)
+  keymap('n', 'Ò', ':tabm +1<cr>', opts_sl)
+end
 
 for i = 1, 9 do
   keymap('n', '<a-' .. i .. '>', ':tabn ' .. i .. '<cr>', opts_sl)
@@ -74,6 +103,25 @@ keymap('n', '<a-0>', '', {
     vim.cmd('tabn ' .. tab)
   end
 })
+
+if is_mac then
+  keymap('n', '¡', ':tabn 1<cr>', opts_sl)
+  keymap('n', '™', ':tabn 2<cr>', opts_sl)
+  keymap('n', '£', ':tabn 3<cr>', opts_sl)
+  keymap('n', '¢', ':tabn 4<cr>', opts_sl)
+  keymap('n', '∞', ':tabn 5<cr>', opts_sl)
+  keymap('n', '§', ':tabn 6<cr>', opts_sl)
+  keymap('n', '¶', ':tabn 7<cr>', opts_sl)
+  keymap('n', '•', ':tabn 8<cr>', opts_sl)
+  keymap('n', 'ª', ':tabn 9<cr>', opts_sl)
+
+  keymap('n', 'º', '', {
+    callback = function()
+      local tab = vim.api.nvim_exec('echo tabpagenr("$")', true)
+      vim.cmd('tabn ' .. tab)
+    end
+  })
+end
 
 keymap('n', '<esc>', ':nohl<cr>', opts_sl)
 keymap('n', '<c-j>', ':res +5<cr>', opts_sl)
