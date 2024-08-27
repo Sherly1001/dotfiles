@@ -26,6 +26,7 @@ opt.mouse     = 'a'
 opt.belloff   = 'all'
 opt.backspace = '2'
 
+opt.timeout = false
 opt.timeoutlen = 250
 opt.updatetime = 100
 opt.redrawtime = 15000
@@ -139,6 +140,11 @@ au['syntax'] = {
 au['dynamic_startcase'] = {
   { 'CmdLineEnter', ':', 'set nosmartcase' },
   { 'CmdLineLeave', ':', 'set smartcase' },
+}
+
+au['insert_timeout'] = {
+  { 'InsertEnter', '*', 'set timeout' },
+  { 'InsertLeave', '*', 'set notimeout' },
 }
 
 au['leave_cursor'] = {

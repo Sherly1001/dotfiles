@@ -41,10 +41,12 @@ keymap('t', '<c-h>', '<c-w>', opts_sl)
 keymap('t', '<c-n>', '<c-\\><c-n>', opts_sl)
 keymap('t', '<c-w>', '<c-\\><c-n><c-w>', opts_sl)
 
--- normal mode
 keymap('n', '<space>', 'f', opts)
 keymap('n', '<s-space>', 'F', opts)
+keymap('v', '<space>', 'f', opts)
+keymap('v', '<s-space>', 'F', opts)
 
+-- normal mode
 keymap('n', 'Q', '', {
   callback = function()
     if vim.o.filetype == 'nerdtree' then
