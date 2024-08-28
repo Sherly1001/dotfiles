@@ -98,7 +98,7 @@ function Funcs.tabline()
 end
 
 function Funcs.stt()
-  return '%f%=' .. lspstt() .. ' %y%r %-14(%3c-%l/%L%)%P'
+  return '%f%=' .. lspstt() .. ' %y%r %(%3c-%l/%L%) %P'
 end
 
 function Funcs.fontsize(step)

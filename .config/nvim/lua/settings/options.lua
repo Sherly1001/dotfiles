@@ -26,6 +26,9 @@ opt.mouse     = 'a'
 opt.belloff   = 'all'
 opt.backspace = '2'
 
+opt.splitbelow = true
+opt.splitright = true
+
 opt.timeout = false
 opt.timeoutlen = 250
 opt.updatetime = 100

@@ -57,7 +57,18 @@ keymap('n', 'Q', '', {
   end
 })
 
-vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', { nargs = '+' })
+vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', {
+  nargs = '+',
+  complete = function(arg_lead, cmd_line, cursor_pos)
+    local args = vim.split(cmd_line, '%s+')
+    if #args == 2 then
+      return ''
+    else
+      return vim.fn.getcompletion(arg_lead, 'file')
+    end
+  end
+})
+
 keymap('n', 'F', ':Lrg ', opts)
 
 if is_mac then
@@ -141,7 +152,7 @@ keymap('n', '<leader>id', ':e ~/.config/nvim/lua/settings/indent.lua<cr>', opts_
 
 keymap('n', '<leader>fs', ':set foldmethod=syntax<cr>', opts_sl)
 keymap('n', '<leader>fm', ':set foldmethod=manual<cr>', opts_sl)
-keymap('n', '<cr>', [[ foldlevel('.') > 0 ? 'za' : 'j' ]], { expr = true })
+keymap('n', '<cr>', [[ foldlevel('.') > 0 ? 'za' : '<cr>' ]], { expr = true })
 
 keymap('n', '<leader>z', ':lua Funcs.nerdtree()<cr>', opts_sl)
 keymap('n', '<leader>cl', ':ColorToggle<cr>', opts_sl)
@@ -172,7 +183,8 @@ keymap('n', '<c-i>', '', {
   end,
 })
 
-keymap('n', 'gf', ':GitGutterFold<cr>', opts)
 keymap('n', 'gl', ':call gitblame#echo()<cr>', opts_sl)
-keymap('n', 'gv', ':DiffviewOpen<cr>', opts_sl)
-keymap('n', 'gc', ':DiffviewClose<cr>', opts_sl)
+keymap('n', 'gf', ':GitGutterFold<cr>', opts)
+keymap('n', 'gdp', ':GitGutterPreviewHunk<cr>', opts_sl)
+keymap('n', 'gdv', ':DiffviewOpen<cr>', opts_sl)
+keymap('n', 'gdc', ':DiffviewClose<cr>', opts_sl)
