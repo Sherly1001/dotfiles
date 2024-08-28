@@ -57,10 +57,7 @@ Plug 'sindrets/diffview.nvim'
 -- lang plugins
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'TovarishFin/vim-solidity'
-Plug 'modocache/move.vim'
 Plug 'ollykel/v-vim'
-Plug 'elkowar/yuck.vim'
 Plug 'tikhomirov/vim-glsl'
 
 vim.call('plug#end')
