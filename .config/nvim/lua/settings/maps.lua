@@ -59,7 +59,7 @@ keymap('n', 'Q', '', {
 
 vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', {
   nargs = '+',
-  complete = function(arg_lead, cmd_line, cursor_pos)
+  complete = function(arg_lead, cmd_line, _)
     local args = vim.split(cmd_line, '%s+')
     if #args == 2 then
       return ''
@@ -183,8 +183,8 @@ keymap('n', '<c-i>', '', {
   end,
 })
 
-keymap('n', 'gl', ':call gitblame#echo()<cr>', opts_sl)
-keymap('n', 'gf', ':GitGutterFold<cr>', opts)
-keymap('n', 'gdp', ':GitGutterPreviewHunk<cr>', opts_sl)
-keymap('n', 'gdv', ':DiffviewOpen<cr>', opts_sl)
-keymap('n', 'gdc', ':DiffviewClose<cr>', opts_sl)
+keymap('n', '<leader>gl', ':call gitblame#echo()<cr>', opts_sl)
+keymap('n', '<leader>gf', ':GitGutterFold<cr>', opts)
+keymap('n', '<leader>dp', ':GitGutterPreviewHunk<cr>', opts_sl)
+keymap('n', '<leader>dv', ':DiffviewOpen<cr>', opts_sl)
+keymap('n', '<leader>dc', ':DiffviewClose<cr>', opts_sl)

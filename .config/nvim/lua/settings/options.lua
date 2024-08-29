@@ -104,10 +104,6 @@ g.ctrlp_working_path_mode = 'ra'
 g.ctrlp_show_hidden = true
 g.ctrlp_open_multiple_files = 't'
 g.ctrlp_user_command = 'rg --hidden --files %s'
-g.ctrlp_prompt_mappings = {
-  ['AcceptSelection("e")'] = {},
-  ['AcceptSelection("t")'] = {'<cr>', '<2-LeftMouse>'},
-}
 
 g.CtrlSpaceUseTabline = 0
 g.CtrlSpaceGlobCommand = 'rg --color=never --hidden --files'
