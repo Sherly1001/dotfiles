@@ -47,6 +47,8 @@ opt.grepformat = '%f:%l:%c:%m'
 
 vim.cmd [[ colorscheme onedark ]]
 
+g.highlight_delay_time = 2000
+
 g.gitgutter_sign_added = '│'
 g.gitgutter_sign_modified = '│'
 g.gitgutter_sign_removed = '│'
@@ -144,6 +146,10 @@ au['dynamic_startcase'] = {
 au['insert_timeout'] = {
   { 'InsertEnter', '*', 'set timeout' },
   { 'InsertLeave', '*', 'set notimeout' },
+}
+
+au['clear_highlight'] = {
+  { 'CmdLineLeave', '/,?', 'lua Funcs.autoClearHighlight()' },
 }
 
 au['leave_cursor'] = {

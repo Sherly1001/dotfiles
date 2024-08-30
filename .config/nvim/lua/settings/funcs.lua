@@ -163,3 +163,21 @@ function Funcs.nerdtree()
     vim.fn.execute('NERDTreeToggle', 'silent!')
   end
 end
+
+local highlight_timer = nil
+function Funcs.autoClearHighlight()
+  local delay = vim.g.highlight_delay_time
+  if not delay or delay == 0 then
+    return
+  end
+
+  if highlight_timer ~= nil then
+    highlight_timer:stop()
+    highlight_timer:close()
+  end
+
+  highlight_timer = vim.defer_fn(function ()
+    vim.cmd [[ nohlsearch ]]
+    highlight_timer = nil
+  end, delay)
+end

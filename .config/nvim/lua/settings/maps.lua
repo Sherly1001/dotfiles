@@ -49,6 +49,9 @@ keymap('v', '<space>', 'f', opts)
 keymap('v', '<s-space>', 'F', opts)
 
 -- normal mode
+keymap('n', 'n', 'n:lua Funcs.autoClearHighlight()<cr>', opts_sl)
+keymap('n', 'N', 'N:lua Funcs.autoClearHighlight()<cr>', opts_sl)
+
 keymap('n', 'Q', '', {
   callback = function()
     if vim.o.filetype == 'nerdtree' then
@@ -138,7 +141,6 @@ if is_mac then
   })
 end
 
-keymap('n', '<esc>', ':nohl<cr>', opts_sl)
 keymap('n', '<c-j>', ':res +5<cr>', opts_sl)
 keymap('n', '<c-k>', ':res -5<cr>', opts_sl)
 keymap('n', '<c-h>', ':vert res +5<cr>', opts_sl)
