@@ -52,7 +52,7 @@ keymap('v', '<s-space>', 'F', opts)
 keymap('n', 'n', 'n:lua Funcs.autoClearHighlight()<cr>', opts_sl)
 keymap('n', 'N', 'N:lua Funcs.autoClearHighlight()<cr>', opts_sl)
 
-keymap('n', 'Q', '', {
+keymap('n', '<leader>q', '', {
   callback = function()
     if vim.o.filetype == 'nerdtree' then
       vim.fn.execute('q', 'silent!')
@@ -164,7 +164,7 @@ keymap('n', '<leader>tv', ':bel vs term://fish<cr>', opts_sl)
 keymap('n', '<leader>tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
 keymap('n', '<leader>vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })
 
-keymap('n', '<leader>d', ':lua Funcs.delete_hidden_bufs()<cr>', opts)
+keymap('n', '<leader>dl', ':lua Funcs.delete_hidden_bufs()<cr>', opts)
 
 keymap('n', '<f2>', ':lua vim.lsp.buf.rename()<cr>', opts)
 keymap('n', '<s-k>', ':lua vim.lsp.buf.hover()<cr>', opts_sl)
