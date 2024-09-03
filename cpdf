@@ -24,7 +24,6 @@ pacman_dependencies=(
     xorg-xinit
     i3
     bluez
-    picom
     polybar
     firefox
     bluez-utils
@@ -67,6 +66,7 @@ yay_dependencies=(
     consolas-font
 
     # base
+    picom-ftlabs-git
     i3lock-color
     brave-bin
 )
