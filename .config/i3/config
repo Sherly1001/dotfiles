@@ -141,7 +141,7 @@ mode "resize" {
     bindsym Up resize shrink height 10
     bindsym Right resize grow width 10
 
-    # back to normal: Enter or Escape or $mod+r
+    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -150,7 +150,7 @@ bindsym $mod+backslash mode "resize"
 # colorclass            border          backgr.         text            indicator           child_border
 client.focused          $color_green    $color_green    $color_black    $color_yellow       $color_green
 client.focused_inactive $color_black    $color_black    $color_white    $color_comment_grey $color_black
-client.unfocused        $color_black    $color_black    $color_white    $color_comment_grey $color_black
+client.unfocused        $color_green    $color_black    $color_white    $color_comment_grey $color_black
 client.urgent           $color_red      $color_red      $color_white    $color_red          $color_red
 client.placeholder      $color_black    $color_black    $color_white    $color_black        $color_black
 client.background       $color_black
@@ -202,7 +202,6 @@ bindsym Mod2+XF86AudioMute        exec --no-startup-id amixer sset Master toggle
 # settings
 default_border pixel 2
 default_floating_border normal
-# hide_edge_borders smart
 focus_follows_mouse no
 
 gaps inner 10
