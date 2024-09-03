@@ -117,8 +117,7 @@ end
 
 keymap('n', '<a-0>', '', {
   callback = function()
-    local tab = vim.api.nvim_exec('echo tabpagenr("$")', true)
-    vim.cmd('tabn ' .. tab)
+    vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
   end
 })
 
@@ -135,8 +134,7 @@ if is_mac then
 
   keymap('n', 'º', '', {
     callback = function()
-      local tab = vim.api.nvim_exec('echo tabpagenr("$")', true)
-      vim.cmd('tabn ' .. tab)
+      vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
     end
   })
 end
@@ -176,6 +174,7 @@ keymap('n', '<s-h>', ':lua vim.lsp.buf.references()<cr>', opts_sl)
 keymap('n', 'f', ':lua vim.diagnostic.open_float()<cr>', opts_sl)
 keymap('n', ']g', ':lua vim.diagnostic.goto_next()<cr>', opts_sl)
 keymap('n', '[g', ':lua vim.diagnostic.goto_prev()<cr>', opts_sl)
+keymap('n', 'g[', ':lua vim.diagnostic.setqflist()<cr>', opts_sl)
 
 
 keymap('n', '<c-i>', '', {
