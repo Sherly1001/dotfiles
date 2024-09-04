@@ -1,3 +1,5 @@
+-- vi: sw=2 ts=2
+
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.local/share/nvim/plugged')
@@ -36,15 +38,17 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'mattn/emmet-vim'
 
 Plug('xianghongai/vscode-react-snippet', {
-    ['do'] = 'yarn install || yarn build || true ',
+  ['do'] = 'yarn install || yarn build || true ',
 })
 
 -- base plugins
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'bkad/CamelCaseMotion'
 Plug 'chrisbra/Colorizer'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -62,14 +66,26 @@ Plug 'tikhomirov/vim-glsl'
 
 vim.call('plug#end')
 
+local npairs_ok, npairs = pcall(require, 'nvim-autopairs')
+if npairs_ok then
+  npairs.setup {
+    map_c_w = true,
+  }
+end
+
+local ntags_ok, ntags = pcall(require, 'nvim-ts-autotag')
+if ntags_ok then
+  ntags.setup()
+end
+
 local ibl_ok, ibl = pcall(require, 'ibl')
 if ibl_ok then
-    ibl.setup()
+  ibl.setup()
 end
 
 local cmt_ok, cmt = pcall(require, 'Comment')
 if cmt_ok then
-    cmt.setup()
+  cmt.setup()
 end
 
 package.loaded['settings'] = nil
