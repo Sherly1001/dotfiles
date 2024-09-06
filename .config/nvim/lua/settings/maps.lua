@@ -48,6 +48,67 @@ keymap('n', '<s-space>', 'F', opts)
 keymap('v', '<space>', 'f', opts)
 keymap('v', '<s-space>', 'F', opts)
 
+-- tab operations
+for _, mode in ipairs({ 'n', 't' }) do
+  local prefix = mode ~= 'n' and '<c-\\><c-n><c-w>' or ''
+
+  keymap(mode, '<c-t>', prefix .. ':tabe<cr>', opts_sl)
+  keymap(mode, '<s-t>', prefix .. ':tab sp<cr>', opts_sl)
+
+  keymap(mode, '<a-t>', prefix .. ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
+  keymap(mode, '<a-s-t>', prefix .. ':tabe | term<cr>', opts_sl)
+
+  keymap(mode, '<a-h>', prefix .. ':tabp<cr>', opts_sl)
+  keymap(mode, '<a-l>', prefix .. ':tabn<cr>', opts_sl)
+  if is_mac then
+    keymap(mode, '†', prefix .. ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
+    keymap(mode, 'ˇ', prefix .. ':tabe | term<cr>', opts_sl)
+
+    keymap(mode, '˙', prefix .. ':tabp<cr>', opts_sl)
+    keymap(mode, '¬', prefix .. ':tabn<cr>', opts_sl)
+  end
+
+  keymap(mode, '<a-left>', prefix .. ':tabp<cr>', opts_sl)
+  keymap(mode, '<a-right>', prefix .. ':tabn<cr>', opts_sl)
+
+  keymap(mode, '<a-s-h>', prefix .. ':tabm -1<cr>', opts_sl)
+  keymap(mode, '<a-s-l>', prefix .. ':tabm +1<cr>', opts_sl)
+  keymap(mode, '<a-s-left>', prefix .. ':tabm -1<cr>', opts_sl)
+  keymap(mode, '<a-s-right>', prefix .. ':tabm +1<cr>', opts_sl)
+  if is_mac then
+    keymap(mode, 'Ó', prefix .. ':tabm -1<cr>', opts_sl)
+    keymap(mode, 'Ò', prefix .. ':tabm +1<cr>', opts_sl)
+  end
+
+  for i = 1, 9 do
+    keymap(mode, '<a-' .. i .. '>', prefix .. ':tabn ' .. i .. '<cr>', opts_sl)
+  end
+
+  keymap(mode, '<a-0>', '', {
+    callback = function()
+      vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
+    end
+  })
+
+  if is_mac then
+    keymap(mode, '¡', prefix .. ':tabn 1<cr>', opts_sl)
+    keymap(mode, '™', prefix .. ':tabn 2<cr>', opts_sl)
+    keymap(mode, '£', prefix .. ':tabn 3<cr>', opts_sl)
+    keymap(mode, '¢', prefix .. ':tabn 4<cr>', opts_sl)
+    keymap(mode, '∞', prefix .. ':tabn 5<cr>', opts_sl)
+    keymap(mode, '§', prefix .. ':tabn 6<cr>', opts_sl)
+    keymap(mode, '¶', prefix .. ':tabn 7<cr>', opts_sl)
+    keymap(mode, '•', prefix .. ':tabn 8<cr>', opts_sl)
+    keymap(mode, 'ª', prefix .. ':tabn 9<cr>', opts_sl)
+
+    keymap(mode, 'º', '', {
+      callback = function()
+        vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
+      end
+    })
+  end
+end
+
 -- normal mode
 keymap('n', 'n', 'n:lua Funcs.autoClearHighlight()<cr>', opts_sl)
 keymap('n', 'N', 'N:lua Funcs.autoClearHighlight()<cr>', opts_sl)
@@ -87,58 +148,6 @@ if is_mac then
   keymap('n', '˚', '<c-t>', opts_sl)
 end
 
-keymap('n', '<c-t>', ':tabe<cr>', opts_sl)
-keymap('n', '<s-t>', ':tab sp<cr>', opts_sl)
-
-keymap('n', '<a-t>', ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
-keymap('n', '<a-h>', ':tabp<cr>', opts_sl)
-keymap('n', '<a-l>', ':tabn<cr>', opts_sl)
-if is_mac then
-  keymap('n', '†', ':tabe | lua Funcs.nerdtree()<cr>', opts_sl)
-  keymap('n', '˙', ':tabp<cr>', opts_sl)
-  keymap('n', '¬', ':tabn<cr>', opts_sl)
-end
-
-keymap('n', '<a-left>', ':tabp<cr>', opts_sl)
-keymap('n', '<a-right>', ':tabn<cr>', opts_sl)
-
-keymap('n', '<a-s-h>', ':tabm -1<cr>', opts_sl)
-keymap('n', '<a-s-l>', ':tabm +1<cr>', opts_sl)
-keymap('n', '<a-s-left>', ':tabm -1<cr>', opts_sl)
-keymap('n', '<a-s-right>', ':tabm +1<cr>', opts_sl)
-if is_mac then
-  keymap('n', 'Ó', ':tabm -1<cr>', opts_sl)
-  keymap('n', 'Ò', ':tabm +1<cr>', opts_sl)
-end
-
-for i = 1, 9 do
-  keymap('n', '<a-' .. i .. '>', ':tabn ' .. i .. '<cr>', opts_sl)
-end
-
-keymap('n', '<a-0>', '', {
-  callback = function()
-    vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
-  end
-})
-
-if is_mac then
-  keymap('n', '¡', ':tabn 1<cr>', opts_sl)
-  keymap('n', '™', ':tabn 2<cr>', opts_sl)
-  keymap('n', '£', ':tabn 3<cr>', opts_sl)
-  keymap('n', '¢', ':tabn 4<cr>', opts_sl)
-  keymap('n', '∞', ':tabn 5<cr>', opts_sl)
-  keymap('n', '§', ':tabn 6<cr>', opts_sl)
-  keymap('n', '¶', ':tabn 7<cr>', opts_sl)
-  keymap('n', '•', ':tabn 8<cr>', opts_sl)
-  keymap('n', 'ª', ':tabn 9<cr>', opts_sl)
-
-  keymap('n', 'º', '', {
-    callback = function()
-      vim.cmd('tabn ' .. vim.fn.tabpagenr('$'))
-    end
-  })
-end
-
 keymap('n', '<c-j>', ':res +5<cr>', opts_sl)
 keymap('n', '<c-k>', ':res -5<cr>', opts_sl)
 keymap('n', '<c-h>', ':vert res +5<cr>', opts_sl)
@@ -158,6 +167,7 @@ keymap('n', '<cr>', [[ foldlevel('.') > 0 ? 'za' : '<cr>' ]], { expr = true })
 
 keymap('n', '<leader>z', ':lua Funcs.nerdtree()<cr>', opts_sl)
 keymap('n', '<leader>cl', ':ColorToggle<cr>', opts_sl)
+keymap('n', '<leader>tc', ':tabc<cr>', opts_sl)
 keymap('n', '<leader>tv', ':bel vs term://fish<cr>', opts_sl)
 keymap('n', '<leader>tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
 keymap('n', '<leader>vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })

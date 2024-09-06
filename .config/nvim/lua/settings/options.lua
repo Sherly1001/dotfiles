@@ -158,8 +158,8 @@ au['leave_cursor'] = {
 
 au['terminal_mode'] = {
   { 'BufEnter', 'term://*', 'startinsert' },
-  { 'TermOpen', '*', 'setlocal statusline=%{b:term_title} | set nornu | set nonu' },
-  { 'TermClose', '*', ':bwipeout!' },
+  { 'TermOpen', '*', 'setlocal statusline=%{b:term_title} | set nornu | set nonu | startinsert' },
+  { 'TermClose', '*', 'if winnr("$") > 1 | bwipeout! | endif' },
 }
 
 au['check_file_changed'] = {
