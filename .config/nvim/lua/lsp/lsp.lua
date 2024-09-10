@@ -66,7 +66,7 @@ local lsp = {
       },
     },
   },
-  tsserver = {
+  ts_ls = {
     on_attach = ignore_default_formatter,
     init_options = {
       plugins = {

@@ -59,10 +59,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sindrets/diffview.nvim'
 
 -- lang plugins
-Plug 'pangloss/vim-javascript'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'ollykel/v-vim'
-Plug 'tikhomirov/vim-glsl'
 
 vim.call('plug#end')
 
