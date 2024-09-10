@@ -46,6 +46,7 @@ local lsp = {
   bashls = {},
   intelephense = {},
   rust_analyzer = {},
+  tailwindcss = {},
   jsonls = {
     settings = {
       json = {
