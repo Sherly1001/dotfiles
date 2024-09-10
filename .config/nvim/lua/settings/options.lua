@@ -42,6 +42,9 @@ opt.showtabline = 2
 opt.tabline = '%!v:lua.Funcs.tabline()'
 opt.statusline = '%!v:lua.Funcs.stt()'
 
+opt.title = true
+opt.titlestring = '%f'
+
 opt.grepprg = 'rg --smart-case --vimgrep --sort=path'
 opt.grepformat = '%f:%l:%c:%m'
 
