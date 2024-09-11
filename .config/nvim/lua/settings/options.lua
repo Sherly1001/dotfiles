@@ -104,15 +104,9 @@ g.db_ui_execute_on_save = 0
 
 g.AutoPairsMapCh = 0
 
-g.ctrlp_cmd = 'CtrlPMixed'
-g.ctrlp_working_path_mode = 'ra'
-g.ctrlp_show_hidden = true
-g.ctrlp_open_multiple_files = 't'
-g.ctrlp_user_command = 'rg --hidden --files %s'
-
 g.CtrlSpaceUseTabline = 0
 g.CtrlSpaceGlobCommand = 'rg --color=never --hidden --files'
-g.CtrlSpaceDefaultMappingKey = '<C-Space> '
+g.CtrlSpaceDefaultMappingKey = '<C-Space>'
 g.CtrlSpaceLoadLastWorkspaceOnStart = 1
 g.CtrlSpaceSaveWorkspaceOnSwitch = 1
 g.CtrlSpaceSaveWorkspaceOnExit = 1

@@ -51,7 +51,8 @@ Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug('junegunn/fzf', { ['do'] = ':call fzf#install()' })
+Plug 'junegunn/fzf.vim'
 
 -- git plugins
 Plug 'zivyangll/git-blame.vim'

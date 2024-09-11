@@ -148,6 +148,8 @@ if is_mac then
   keymap('n', '˚', '<c-t>', opts_sl)
 end
 
+keymap('n', '<c-p>', ':Files<cr>', opts)
+
 keymap('n', '<c-j>', ':res +5<cr>', opts_sl)
 keymap('n', '<c-k>', ':res -5<cr>', opts_sl)
 keymap('n', '<c-h>', ':vert res +5<cr>', opts_sl)
