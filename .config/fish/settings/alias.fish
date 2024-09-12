@@ -1,0 +1,32 @@
+# vi: sw=2 ts=2
+
+alias sn "screen -S"
+alias sr "screen -r"
+alias sls "screen -ls"
+
+alias vi "nvim"
+alias nv "neovide"
+alias nu "nix-env --uninstall"
+
+alias dp "docker-compose"
+alias cm "cmake -B build -S ."
+alias cmb "cmake --build build"
+
+alias gco "git checkout"
+alias gcoo "gco master"
+alias gcm "git commit -m"
+alias gcma "git commit --amend"
+alias gad "git add"
+alias glg "git log"
+alias glo "git log --oneline"
+alias gla "git log --oneline --graph --all"
+alias gpu "git push"
+alias gpl "git pull"
+alias gft "git fetch"
+alias gcl "git clone"
+alias gmg "git merge"
+alias gbr "git branch"
+alias gst "git status"
+alias gdf "git diff"
+alias gdc "git diff --cached"
+alias gd "git diff --no-index"
