@@ -42,9 +42,6 @@ opt.showtabline = 2
 opt.tabline = '%!v:lua.Funcs.tabline()'
 opt.statusline = '%!v:lua.Funcs.stt()'
 
-opt.title = true
-opt.titlestring = '%f'
-
 opt.grepprg = 'rg --smart-case --vimgrep --sort=path'
 opt.grepformat = '%f:%l:%c:%m'
 
@@ -102,7 +99,9 @@ g.webdevicons_enable_nerdtree = 1
 g.db_ui_show_help = 0
 g.db_ui_execute_on_save = 0
 
-g.AutoPairsMapCh = 0
+g.fzf_action = {
+  ['ctrl-l'] = 'tab split',
+}
 
 g.CtrlSpaceUseTabline = 0
 g.CtrlSpaceGlobCommand = 'rg --color=never --hidden --files'
@@ -130,6 +129,13 @@ g.vimtex_compiler_latexmk_engines = {
 
 local au = {}
 
+au['update_title'] = {
+  { 'VimEnter', '*', 'lua Funcs.update_title()' },
+  { 'BufEnter', '*', 'lua Funcs.update_title()' },
+  { 'TermEnter', '*', 'lua Funcs.update_title()' },
+  { 'TermOpen', '*', 'lua Funcs.update_title()' },
+}
+
 au['syntax'] = {
   { 'BufNewFile', '*', 'syntax sync fromstart' },
   { 'BufReadPost', '*', 'syntax sync fromstart' },
@@ -156,7 +162,7 @@ au['leave_cursor'] = {
 au['terminal_mode'] = {
   { 'BufEnter', 'term://*', 'startinsert' },
   { 'TermOpen', '*', 'setlocal statusline=%{b:term_title} | set nornu | set nonu | startinsert' },
-  { 'TermClose', '*', 'if winnr("$") > 1 | bwipeout! | endif' },
+  { 'TermClose', '*', 'call feedkeys("<cr>")' },
 }
 
 au['check_file_changed'] = {

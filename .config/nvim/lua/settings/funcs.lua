@@ -8,7 +8,7 @@ local function modified(bufnr)
   return vim.fn.getbufvar(bufnr, '&modified') == 1
 end
 
-local function title(bufnr)
+local function buftitle(bufnr)
   local name = vim.fn.bufname(bufnr)
   local filename = name == '' and '[No Name]' or vim.fn.fnamemodify(name, ':t')
   if #filename > 15 then
@@ -62,7 +62,7 @@ function Funcs.tabline()
 
     local tabname = tab == curtab and '%#TabLineSel#' or '%#TabLine#'
     tabname = tabname .. '%' .. tab .. 'T '
-    tabname = tabname .. title(bufnr) .. bufsNum
+    tabname = tabname .. buftitle(bufnr) .. bufsNum
     tabname = tabname .. (modified(bufnr) and ' •' or '')
     tabname = tabname .. ' %T'
 
@@ -99,6 +99,21 @@ end
 
 function Funcs.stt()
   return '%f%=' .. lspstt() .. ' %y%r %(%3c-%l/%L%) %P'
+end
+
+vim.o.title = true
+function Funcs.update_title()
+  local title = vim.fn.expand('%f')
+  local pwd = vim.fn.getcwd():gsub('^' .. vim.env.HOME, '~')
+
+  if title == '' then
+    title = '[No Name] ' .. pwd
+  elseif title:find('^term://') ~= nil then
+    title = pwd
+  end
+
+  vim.o.titlestring = title
+  return title
 end
 
 function Funcs.fontsize(step)
