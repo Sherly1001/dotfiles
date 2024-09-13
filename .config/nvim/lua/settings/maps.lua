@@ -137,6 +137,7 @@ vim.api.nvim_create_user_command('Lrg', 'silent lgrep! <args> | lopen 24', {
 
 keymap('n', 'F', ':Lrg ', opts)
 
+keymap('n', '<c-space>', ':CtrlSpace<cr>', opts_sl)
 if is_mac then
   keymap('n', '<a-space>', ':CtrlSpace<cr>', opts_sl)
 end
