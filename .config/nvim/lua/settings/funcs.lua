@@ -103,8 +103,9 @@ end
 
 vim.o.title = true
 function Funcs.update_title()
-  local title = vim.fn.expand('%f')
-  local pwd = vim.fn.getcwd():gsub('^' .. vim.env.HOME, '~')
+  local home = '^' .. vim.env.HOME
+  local title = vim.fn.expand('%f'):gsub(home, '~')
+  local pwd = vim.fn.getcwd():gsub(home, '~')
 
   if title == '' then
     title = '[No Name] ' .. pwd
