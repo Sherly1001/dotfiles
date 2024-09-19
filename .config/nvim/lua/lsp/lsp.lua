@@ -4,7 +4,6 @@ local vue_language_server_path = vim.fn.expand('$HOME/.local/share/nvim/mason/pa
 
 local function ignore_default_formatter(client)
   local rc = client.server_capabilities
-  -- vim.api.nvim_echo({{vim.inspect(rc)}}, true, {})
   rc.documentFormattingProvider = false
   rc.documentRangeFormattingProvider = false
 end
@@ -55,15 +54,27 @@ local lsp = {
             fileMatch = { 'package.json' },
             url = 'https://json.schemastore.org/package.json',
           },
+          {
+            fileMatch = { 'jsconfig.json', 'jsconfig.app.json', 'jsconfig.node.json' },
+            url = 'https://json.schemastore.org/jsconfig.json',
+          },
+          {
+            fileMatch = { 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json' },
+            url = 'https://json.schemastore.org/tsconfig.json',
+          },
+          {
+            fileMatch = { 'prettierrc.json', '.prettierrc' },
+            url = 'https://json.schemastore.org/prettierrc.json',
+          },
         },
       },
     },
   },
   volar = {
     on_attach = ignore_default_formatter,
-    init_options = {
-      vue = {
-        version = "2.6",
+    settings = {
+      volar = {
+        useWorkspaceDependencies = true,
       },
     },
   },
