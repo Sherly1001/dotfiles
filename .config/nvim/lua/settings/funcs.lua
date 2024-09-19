@@ -167,16 +167,20 @@ function Funcs.delete_hidden_bufs()
   print('Deleted ' .. deleted .. ' buffers')
 end
 
-local function is_nerdtree_open()
-  return vim.fn.exists('t:NERDTreeBufName') and vim.fn.bufwinnr('t:NERDTreeBufName') ~= -1
-end
-
 function Funcs.nerdtree()
-  if is_nerdtree_open() then return end
+  local previous_winid = vim.api.nvim_get_current_win()
   local previous_winnr = vim.fn.winnr('$')
+
   vim.fn.execute('NERDTreeMirror', 'silent!')
   if previous_winnr == vim.fn.winnr('$') then
     vim.fn.execute('NERDTreeToggle', 'silent!')
+  end
+
+  if previous_winnr < vim.fn.winnr('$') then
+    local nerdtree_winid = vim.api.nvim_get_current_win()
+    vim.api.nvim_set_current_win(previous_winid)
+    vim.fn.execute('NERDTreeFind', 'silent!')
+    vim.api.nvim_set_current_win(nerdtree_winid)
   end
 end
 
