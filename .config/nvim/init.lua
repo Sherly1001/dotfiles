@@ -6,7 +6,6 @@ vim.call('plug#begin', '~/.local/share/nvim/plugged')
 
 -- utils plugins
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
-Plug 'lervag/vimtex'
 Plug 'numToStr/Comment.nvim'
 Plug 'Asheq/close-buffers.vim'
 Plug 'mg979/vim-visual-multi'
@@ -83,6 +82,16 @@ end
 local cmt_ok, cmt = pcall(require, 'Comment')
 if cmt_ok then
   cmt.setup()
+end
+
+local tst_ok, tst = pcall(require, 'nvim-treesitter.configs')
+if tst_ok then
+  tst.setup {
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+  }
 end
 
 package.loaded['settings'] = nil
