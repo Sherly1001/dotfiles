@@ -103,14 +103,23 @@
 
 
 ;; start binding keys
+(define i3-kill "i3-msg kill")
+(define i3-sc-show "i3-msg 'scratchpad show'")
+(define i3-fl-togg "i3-msg 'floating toggle'")
+(define i3-ws-prev "i3-msg 'workspace prev'")
+(define i3-ws-next "i3-msg 'workspace next'")
+(define mouse-btn-8 "xdotool click --window $(xdotool getactivewindow) 8")
+(define mouse-btn-9 "xdotool click --window $(xdotool getactivewindow) 9")
 
 (multi-click-key 'b:8
-  '((1 . ((right . (run-command "i3-msg 'workspace prev'"))
-          (left . (run-command "i3-msg 'workspace next'"))
-          (up . (run-command "i3-msg 'scratchpad show'"))))
-    (2 . ((none . (run-command "i3-msg 'floating toggle'"))))))
+  '((1 . ((none . (run-command mouse-btn-8))
+          (right . (run-command i3-ws-prev))
+          (left . (run-command i3-ws-next))
+          (up . (run-command i3-sc-show))))
+    (2 . ((none . (run-command i3-fl-togg))))))
 
 (multi-click-key 'b:9
-  '((1 . ((right . (run-command "xdotool click --window $(xdotool getactivewindow) 8"))
-          (left . (run-command "xdotool click --window $(xdotool getactivewindow) 9"))))
-    (2 . ((none . (run-command "i3-msg kill"))))))
+  '((1 . ((none . (run-command mouse-btn-9))
+          (right . (run-command mouse-btn-8))
+          (left . (run-command mouse-btn-9))))
+    (2 . ((none . (run-command i3-kill))))))
