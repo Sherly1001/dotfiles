@@ -54,6 +54,7 @@ Plug('junegunn/fzf', { ['do'] = ':call fzf#install()' })
 Plug 'junegunn/fzf.vim'
 
 -- git plugins
+Plug 'tpope/vim-fugitive'
 Plug 'zivyangll/git-blame.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'sindrets/diffview.nvim'
