@@ -25,13 +25,14 @@ Goto [dependent packages](#dependent-packages) and download packages you want to
 ### Fonts
 
 - [consolas-font](https://aur.archlinux.org/packages/consolas-font)
-- [ttf-joypixels](https://www.archlinux.org/packages/community/any/ttf-joypixels)
-- [ttf-font-awesome](https://www.archlinux.org/packages/community/any/ttf-font-awesome/)
+- [ttf-joypixels](https://archlinux.org/packages/extra/any/ttf-joypixels)
+- [ttf-font-awesome](https://archlinux.org/packages/extra/any/ttf-font-awesome)
 - [noto-fonts](https://www.archlinux.org/packages/extra/any/noto-fonts)
+- [adobe-source-code-pro-fonts](https://archlinux.org/packages/extra/any/adobe-source-code-pro-fonts)
 
 ### Picom
 
-Install [picom](https://archlinux.org/packages/extra/x86_64/picom/) from pacman.
+Install [picom-ftlabs-git](https://aur.archlinux.org/packages/picom-ftlabs-git) from aur.
 
 ### Volume
 
@@ -46,20 +47,20 @@ Start the PulseAudio daemon
 pulseaudio --start
 ```
 
-_Optional_ Install [sox](https://archlinux.org/packages/community/x86_64/sox/) to play sound when adjusting volume
+_Optional_ Install [sox](https://archlinux.org/packages/extra/x86_64/sox/) to play sound when adjusting volume
 
 ### Polybar
 
 - [polybar](https://archlinux.org/packages/extra/x86_64/polybar/)
-- [inotify-tools](https://archlinux.org/packages/community/x86_64/inotify-tools/) to check brightness changes
+- [inotify-tools](https://archlinux.org/packages/extra/x86_64/inotify-tools/) to check brightness changes
 
 ### Other tools
 
 - [alacritty](https://wiki.archlinux.org/title/Alacritty) - terminal
-- [numlockx](https://archlinux.org/packages/community/x86_64/numlockx/) - auto turn numlock on
-- [copyq](https://archlinux.org/packages/community/x86_64/copyq/) - clipboard history
+- [numlockx](https://archlinux.org/packages/extra/x86_64/numlockx/) - auto turn numlock on
+- [copyq](https://archlinux.org/packages/extra/x86_64/copyq/) - clipboard history
 - [feh](https://wiki.archlinux.org/title/feh) - background settings
 - [flameshot](https://wiki.archlinux.org/title/Flameshot) - take screenshots
 - [dunst](https://wiki.archlinux.org/title/Dunst) - notification daemons
 - [rofi](https://wiki.archlinux.org/title/Rofi) - application launcher
-- [yad](https://archlinux.org/packages/community/x86_64/yad/) - show polybar calendar
+- [yad](https://archlinux.org/packages/extra/x86_64/yad/) - show polybar calendar

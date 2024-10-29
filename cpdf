@@ -18,6 +18,7 @@ pacman_dependencies=(
     ttf-font-awesome
     noto-fonts
     noto-fonts-cjk
+    adobe-source-code-pro-fonts
 
     # base
     xorg
