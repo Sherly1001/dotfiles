@@ -188,7 +188,8 @@ keymap('n', '<s-h>', ':lua vim.lsp.buf.references()<cr>', opts_sl)
 keymap('n', 'f', ':lua vim.diagnostic.open_float()<cr>', opts_sl)
 keymap('n', ']g', ':lua vim.diagnostic.goto_next()<cr>', opts_sl)
 keymap('n', '[g', ':lua vim.diagnostic.goto_prev()<cr>', opts_sl)
-keymap('n', 'g[', ':lua vim.diagnostic.setqflist()<cr>', opts_sl)
+keymap('n', 'g]', ':lua vim.diagnostic.setqflist()<cr>', opts_sl)
+keymap('n', 'g[', ':lua vim.diagnostic.setloclist()<cr>', opts_sl)
 
 
 keymap('n', '<c-i>', '', {
