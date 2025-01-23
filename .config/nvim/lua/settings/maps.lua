@@ -177,6 +177,7 @@ keymap('n', '<leader>tt', ':bel sp term://fish <bar> resize 14<cr>', opts_sl)
 keymap('n', '<leader>vi', [[ &keymap == '' ? ':set keymap=vietnamese-vni<cr>' : ':set keymap=<cr>' ]], { expr = true })
 
 keymap('n', '<leader>dl', ':lua Funcs.delete_hidden_bufs()<cr>', opts)
+keymap('n', '<leader>il', ':lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>', opts_sl)
 
 keymap('n', '<f2>', ':lua vim.lsp.buf.rename()<cr>', opts)
 keymap('n', '<s-k>', ':lua vim.lsp.buf.hover()<cr>', opts_sl)
