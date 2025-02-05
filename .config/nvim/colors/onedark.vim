@@ -728,6 +728,7 @@ if has("nvim")
   " }}}
 
   call s:h("NormalFloat", { "bg": s:background })
+  call s:h("LspInlayHint", { "fg": s:gutter_fg_grey })
 endif
 
 " }}}
