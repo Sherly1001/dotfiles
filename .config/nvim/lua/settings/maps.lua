@@ -41,6 +41,7 @@ keymap('t', '<c-h>', '<c-w>', opts_sl)
 keymap('t', '<c-n>', '<c-\\><c-n>', opts_sl)
 keymap('t', '<c-w>', '<c-\\><c-n><c-w>', opts_sl)
 keymap('t', '<c-p>', '<c-\\><c-n>pi', opts_sl)
+keymap('t', '<c-s-p>', '<c-\\><c-n>"*pi', opts_sl)
 
 keymap('n', '<leader>;', ';', opts)
 keymap('n', '<leader>,', ',', opts)
