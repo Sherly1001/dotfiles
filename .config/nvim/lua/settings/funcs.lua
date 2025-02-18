@@ -47,6 +47,27 @@ function Funcs.pertab()
   return numtab > 1 and (curtab .. '/' .. numtab) or ''
 end
 
+function Funcs.tabname(tab, showmod)
+  showmod = showmod or 'left'
+
+  local wins = vim.fn.tabpagewinnr(tab)
+  local bufs = vim.fn.tabpagebuflist(tab)
+  local bufnr = bufs[wins]
+
+  local bufsNum = ''
+  local ok, res = pcall(vim.fn['ctrlspace#api#Buffers'], tab)
+  if ok then
+    bufsNum = vim.fn.len(res)
+    bufsNum = Funcs.bufsNum(bufsNum)
+  end
+
+  local modchar = '•'
+  local ismod = modified(bufnr)
+
+  return ((showmod == 'right' and ismod) and (modchar .. ' ') or '') ..
+      buftitle(bufnr) .. bufsNum .. ((showmod == 'left' and ismod) and (' ' .. modchar) or '')
+end
+
 function Funcs.tabline()
   local numtab = vim.fn.tabpagenr('$')
   local curtab = vim.fn.tabpagenr()
@@ -55,10 +76,6 @@ function Funcs.tabline()
 
   local tabs = {}
   for tab = 1, numtab do
-    local wins = vim.fn.tabpagewinnr(tab)
-    local bufs = vim.fn.tabpagebuflist(tab)
-    local bufnr = bufs[wins]
-
     local bufsNum = ''
     local ok, res = pcall(vim.fn['ctrlspace#api#Buffers'], tab)
     if ok then
@@ -68,8 +85,7 @@ function Funcs.tabline()
 
     local tabname = tab == curtab and '%#TabLineSel#' or '%#TabLine#'
     tabname = tabname .. '%' .. tab .. 'T '
-    tabname = tabname .. buftitle(bufnr) .. bufsNum
-    tabname = tabname .. (modified(bufnr) and ' •' or '')
+    tabname = tabname .. Funcs.tabname(tab)
     tabname = tabname .. ' %T'
 
     table.insert(tabs, tabname)
@@ -202,7 +218,7 @@ function Funcs.autoClearHighlight()
     highlight_timer:close()
   end
 
-  highlight_timer = vim.defer_fn(function ()
+  highlight_timer = vim.defer_fn(function()
     vim.cmd [[ nohlsearch ]]
     highlight_timer = nil
   end, delay)
