@@ -107,6 +107,7 @@ g.CtrlSpaceUseTabline = 0
 g.CtrlSpaceGlobCommand = 'rg --color=never --hidden --files'
 g.CtrlSpaceDefaultMappingKey = '<C-Space>'
 g.CtrlSpaceLoadLastWorkspaceOnStart = 1
+g.CtrlSpaceWorkspaceFile = '~/.cache/nvim/ctrlspace_workspaces'
 g.CtrlSpaceSaveWorkspaceOnSwitch = 1
 g.CtrlSpaceSaveWorkspaceOnExit = 1
 
