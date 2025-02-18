@@ -10,6 +10,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'Asheq/close-buffers.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
@@ -62,41 +63,6 @@ Plug 'sindrets/diffview.nvim'
 -- lang plugins
 
 vim.call('plug#end')
-
-local npairs_ok, npairs = pcall(require, 'nvim-autopairs')
-if npairs_ok then
-  npairs.setup {
-    map_c_w = true,
-  }
-end
-
-local ntags_ok, ntags = pcall(require, 'nvim-ts-autotag')
-if ntags_ok then
-  ntags.setup()
-end
-
-local ibl_ok, ibl = pcall(require, 'ibl')
-if ibl_ok then
-  ibl.setup()
-end
-
-local cmt_ok, cmt = pcall(require, 'Comment')
-if cmt_ok then
-  cmt.setup()
-end
-
-local tst_ok, tst = pcall(require, 'nvim-treesitter.configs')
-if tst_ok then
-  tst.setup {
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    indent = {
-      enable = true,
-    },
-  }
-end
 
 package.loaded['settings'] = nil
 require 'settings'

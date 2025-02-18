@@ -2,6 +2,7 @@
 
 local m = {
   'settings.funcs',
+  'settings.setups',
   'settings.options',
   'settings.maps',
   'settings.indent',

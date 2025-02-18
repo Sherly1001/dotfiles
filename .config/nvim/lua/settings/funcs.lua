@@ -41,6 +41,12 @@ function Funcs.bufsNum(nr)
   return str
 end
 
+function Funcs.pertab()
+  local numtab = vim.fn.tabpagenr('$')
+  local curtab = vim.fn.tabpagenr()
+  return numtab > 1 and (curtab .. '/' .. numtab) or ''
+end
+
 function Funcs.tabline()
   local numtab = vim.fn.tabpagenr('$')
   local curtab = vim.fn.tabpagenr()

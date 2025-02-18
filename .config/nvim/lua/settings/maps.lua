@@ -160,6 +160,7 @@ keymap('n', '<c-l>', ':vert res -5<cr>', opts_sl)
 
 keymap('n', '<leader>rl', ':so ~/.config/nvim/init.lua<cr>', opts_sl)
 keymap('n', '<leader>rc', ':e ~/.config/nvim/init.lua<cr>', opts_sl)
+keymap('n', '<leader>st', ':e ~/.config/nvim/lua/settings/setups.lua<cr>', opts_sl)
 keymap('n', '<leader>s', ':e ~/.config/nvim/lua/settings/options.lua<cr>', opts_sl)
 keymap('n', '<leader>m', ':e ~/.config/nvim/lua/settings/maps.lua<cr>', opts_sl)
 keymap('n', '<leader>l', ':e ~/.config/nvim/lua/lsp/lsp.lua<cr>', opts_sl)
