@@ -1,40 +1,40 @@
 # see all configures in `man 5 alacritty`
 
 [colors.bright]
-black = "#7f8c8d"
-blue = "#3daee9"
-cyan = "#16a085"
-green = "#1cdc9a"
-magenta = "#8e44ad"
-red = "#c0392b"
-white = "#ffffff"
-yellow = "#fdbc4b"
+black = "#5a5e66"
+blue = "#89cdff"
+cyan = "#74d4e0"
+green = "#b6d7a0"
+magenta = "#e4aafb"
+red = "#ff99a0"
+white = "#dde4f1"
+yellow = "#ffdd98"
 
 [colors.dim]
-black = "#31363b"
-blue = "#1b668f"
-cyan = "#186c60"
-green = "#17a262"
-magenta = "#614a73"
-red = "#783228"
-white = "#63686d"
-yellow = "#b65619"
+black = "#14161a"
+blue = "#41679a"
+cyan = "#2c6d75"
+green = "#578a54"
+magenta = "#70508f"
+red = "#be5046"
+white = "#8c929c"
+yellow = "#d19a66"
 
 [colors.normal]
-black = "#232627"
-blue = "#1d99f3"
-cyan = "#1abc9c"
-green = "#11d116"
-magenta = "#9b59b6"
-red = "#ed1515"
-white = "#fcfcfc"
-yellow = "#f67400"
+black = "#282c34"
+blue = "#61afef"
+cyan = "#56b6c2"
+green = "#98c379"
+magenta = "#c678dd"
+red = "#e06c75"
+white = "#abb2bf"
+yellow = "#e5c07b"
 
 [colors.primary]
-background = "#232627"
-foreground = "#fcfcfc"
-bright_foreground = "#ffffff"
-dim_foreground = "#eff0f1"
+background = "#282c34"
+foreground = "#abb2bf"
+bright_foreground = "#dde4f1"
+dim_foreground = "#8c929c"
 
 [cursor]
 unfocused_hollow = false
@@ -48,7 +48,7 @@ shape = "Underline"
 size = 9
 
 [font.normal]
-family = "Consolas"
+family = "SauceCodePro Nerd Font Mono"
 
 [window.dimensions]
 lines = 40
