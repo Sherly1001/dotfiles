@@ -24,11 +24,9 @@ Goto [dependent packages](#dependent-packages) and download packages you want to
 
 ### Fonts
 
-- [consolas-font](https://aur.archlinux.org/packages/consolas-font)
-- [ttf-joypixels](https://archlinux.org/packages/extra/any/ttf-joypixels)
-- [ttf-font-awesome](https://archlinux.org/packages/extra/any/ttf-font-awesome)
 - [noto-fonts](https://www.archlinux.org/packages/extra/any/noto-fonts)
-- [adobe-source-code-pro-fonts](https://archlinux.org/packages/extra/any/adobe-source-code-pro-fonts)
+- [noto-fonts-cjk](https://www.archlinux.org/packages/extra/any/noto-fonts-cjk)
+- [SauceCodePro Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip)
 
 ### Picom
 

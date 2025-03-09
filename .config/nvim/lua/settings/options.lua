@@ -66,9 +66,9 @@ if g.neovide then
   g.neovide_cursor_vfx_mode         = 'railgun'
   g.neovide_cursor_vfx_particle_density = 10.0
 
-  opt.guifont = 'Source Code Pro:h8'
+  opt.guifont = 'SauceCodePro Nerd Font Mono:h8'
   if is_mac then
-    opt.guifont = 'Source Code Pro:h13'
+    opt.guifont = 'SauceCodePro Nerd Font Mono:h13'
   end
 
   vim.cmd [[ nn <silent> <c-=> :call v:lua.Funcs.fontsize()<cr> ]]
