@@ -139,14 +139,26 @@ endfunction
 let s:colors = {
   \ "red": { "gui": "#E06C75", "cterm": "204", "cterm16": "1" },
   \ "dark_red": { "gui": "#BE5046", "cterm": "196", "cterm16": "9" },
+  \ "bright_red": { "gui": "#FF99A0", "cterm": "217", "cterm16": "9" },
   \ "green": { "gui": "#98C379", "cterm": "114", "cterm16": "2" },
+  \ "dark_green": { "gui": "#578A54", "cterm": "65", "cterm16": "10" },
+  \ "bright_green": { "gui": "#B6D7A0", "cterm": "151", "cterm16": "10" },
   \ "yellow": { "gui": "#E5C07B", "cterm": "180", "cterm16": "3" },
   \ "dark_yellow": { "gui": "#D19A66", "cterm": "173", "cterm16": "11" },
+  \ "bright_yellow": { "gui": "#FFDD98", "cterm": "223", "cterm16": "11" },
   \ "blue": { "gui": "#61AFEF", "cterm": "39", "cterm16": "4" },
+  \ "dark_blue": { "gui": "#41679A", "cterm": "67", "cterm16": "12" },
+  \ "bright_blue": { "gui": "#89CDFF", "cterm": "117", "cterm16": "12" },
   \ "purple": { "gui": "#C678DD", "cterm": "170", "cterm16": "5" },
+  \ "dark_purple": { "gui": "#70508F", "cterm": "96", "cterm16": "13" },
+  \ "bright_purple": { "gui": "#E4AAFB", "cterm": "183", "cterm16": "13" },
   \ "cyan": { "gui": "#56B6C2", "cterm": "38", "cterm16": "6" },
+  \ "dark_cyan": { "gui": "#2C6D75", "cterm": "30", "cterm16": "14" },
+  \ "bright_cyan": { "gui": "#74D4E0", "cterm": "116", "cterm16": "14" },
   \ "white": { "gui": "#ABB2BF", "cterm": "145", "cterm16": "15" },
+  \ "bright_white": { "gui": "#DDE4F1", "cterm": "189", "cterm16": "15" },
   \ "black": { "gui": "#282C34", "cterm": "235", "cterm16": "0" },
+  \ "bright_black": { "gui": "#5A5E66", "cterm": "59", "cterm16": "8" },
   \ "foreground": { "gui": "#ABB2BF", "cterm": "145", "cterm16": "NONE" },
   \ "background": { "gui": "#282C34", "cterm": "235", "cterm16": "NONE" },
   \ "comment_grey": { "gui": "#5C6370", "cterm": "59", "cterm16": "7" },
@@ -160,14 +172,34 @@ let s:colors = {
 
 let s:red = s:colors.red
 let s:dark_red = s:colors.dark_red
+let s:bright_red = s:colors.bright_red
+
 let s:green = s:colors.green
+let s:dark_green = s:colors.dark_green
+let s:bright_green = s:colors.bright_green
+
 let s:yellow = s:colors.yellow
 let s:dark_yellow = s:colors.dark_yellow
+let s:bright_yellow = s:colors.bright_yellow
+
 let s:blue = s:colors.blue
+let s:dark_blue = s:colors.dark_blue
+let s:bright_blue = s:colors.bright_blue
+
 let s:purple = s:colors.purple
+let s:dark_purple = s:colors.dark_purple
+let s:bright_purple = s:colors.bright_purple
+
 let s:cyan = s:colors.cyan
+let s:dark_cyan = s:colors.dark_cyan
+let s:bright_cyan = s:colors.bright_cyan
+
 let s:white = s:colors.white
+let s:bright_white = s:colors.bright_white
+
 let s:black = s:colors.black
+let s:bright_black = s:colors.bright_black
+
 let s:foreground = s:colors.foreground
 let s:background = s:colors.background
 let s:comment_grey = s:colors.comment_grey
@@ -191,20 +223,20 @@ if has('nvim')
   let g:terminal_color_5 = s:purple.gui
   let g:terminal_color_6 = s:cyan.gui
   let g:terminal_color_7 = s:comment_grey.gui
-  let g:terminal_color_8 = s:visual_grey.gui
-  let g:terminal_color_9 = s:red.gui
-  let g:terminal_color_10 = s:green.gui
-  let g:terminal_color_11 = s:yellow.gui
-  let g:terminal_color_12 = s:blue.gui
-  let g:terminal_color_13 = s:purple.gui
-  let g:terminal_color_14 = s:cyan.gui
-  let g:terminal_color_15 = s:white.gui
+  let g:terminal_color_8 = s:bright_black.gui
+  let g:terminal_color_9 = s:bright_red.gui
+  let g:terminal_color_10 = s:bright_green.gui
+  let g:terminal_color_11 = s:bright_yellow.gui
+  let g:terminal_color_12 = s:bright_blue.gui
+  let g:terminal_color_13 = s:bright_purple.gui
+  let g:terminal_color_14 = s:bright_cyan.gui
+  let g:terminal_color_15 = s:bright_white.gui
 else
   let g:terminal_ansi_colors = [
     \ s:black.gui, s:red.gui, s:green.gui, s:yellow.gui,
     \ s:blue.gui, s:purple.gui, s:cyan.gui, s:comment_grey.gui,
-    \ s:visual_grey.gui, s:red.gui, s:green.gui, s:yellow.gui,
-    \ s:blue.gui, s:purple.gui, s:cyan.gui, s:white.gui
+    \ s:bright_black.gui, s:bright_red.gui, s:bright_green.gui, s:bright_yellow.gui,
+    \ s:bright_blue.gui, s:bright_purple.gui, s:bright_cyan.gui, s:bright_white.gui
   \]
 endif
 
@@ -687,14 +719,14 @@ if has("nvim")
   let g:terminal_color_5 =  s:purple.gui
   let g:terminal_color_6 =  s:cyan.gui
   let g:terminal_color_7 =  s:white.gui
-  let g:terminal_color_8 =  s:visual_grey.gui
-  let g:terminal_color_9 =  s:dark_red.gui
-  let g:terminal_color_10 = s:green.gui " No dark version
-  let g:terminal_color_11 = s:dark_yellow.gui
-  let g:terminal_color_12 = s:blue.gui " No dark version
-  let g:terminal_color_13 = s:purple.gui " No dark version
-  let g:terminal_color_14 = s:cyan.gui " No dark version
-  let g:terminal_color_15 = s:comment_grey.gui
+  let g:terminal_color_8 =  s:bright_black.gui
+  let g:terminal_color_9 =  s:bright_red.gui
+  let g:terminal_color_10 = s:bright_green.gui
+  let g:terminal_color_11 = s:bright_yellow.gui
+  let g:terminal_color_12 = s:bright_blue.gui
+  let g:terminal_color_13 = s:bright_purple.gui
+  let g:terminal_color_14 = s:bright_cyan.gui
+  let g:terminal_color_15 = s:bright_white.gui
   let g:terminal_color_background = s:background.gui
   let g:terminal_color_foreground = s:foreground.gui
   " }}}
