@@ -38,9 +38,9 @@ local langs = {
 }
 
 local lsp = {
-  texlab = {},
   html = {},
-  vls = {},
+  zls = {},
+  nil_ls = {},
   gopls = {},
   pyright = {},
   clangd = {},

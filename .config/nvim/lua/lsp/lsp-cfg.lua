@@ -109,6 +109,30 @@ cmp.setup {
   })
 }
 
+local mapping_cmdline = cmp.mapping.preset.cmdline({
+  ['<cr>'] = {
+    c = cmp.mapping.confirm({ select = false }),
+  },
+})
+
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = mapping_cmdline,
+  sources = {
+    { name = 'buffer' },
+  },
+})
+
+cmp.setup.cmdline(':', {
+  mapping = mapping_cmdline,
+  sources = cmp.config.sources({
+    { name = 'path' },
+    { name = 'buffer' },
+  }, {
+    { name = 'cmdline' },
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false },
+})
+
 local signs = {
   { name = 'DiagnosticSignError', text = system_signs.error },
   { name = 'DiagnosticSignWarn',  text = system_signs.warn },
