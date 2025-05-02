@@ -50,11 +50,16 @@ size = 9
 [font.normal]
 family = "SauceCodePro Nerd Font Mono"
 
+[window]
+option_as_alt = "OnlyLeft"
+
 [window.dimensions]
 lines = 40
 columns = 120
 
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "T"
-mods = "Shift|Control"
+[keyboard]
+bindings = [
+  { mods = "Shift|Control", key = "T", action = "SpawnNewInstance" },
+  { mods = "Alt", key = "H", action = "SelectPreviousTab" },
+  { mods = "Alt", key = "L", action = "SelectNextTab" },
+]
