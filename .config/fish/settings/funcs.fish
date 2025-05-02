@@ -20,6 +20,12 @@ function lu --description 'du and sort'
   du $arg | sort -h $_flag_r
 end
 
+function prompt_nix_shell
+  if set -q name
+    echo -n (set_color blue)"[$name]> "(set_color normal)
+  end
+end
+
 function fish_git_prompt
   if not git branch &>/dev/null
     return 0
@@ -88,7 +94,7 @@ function fish_prompt --description 'Write out the prompt'
 
   set color_cwd brblue
 
-  echo -n -s -e (prompt_login)' ' (set_color $color_cwd)\
+  echo -n -s -e (prompt_nix_shell) (prompt_login)' ' (set_color $color_cwd)\
     (prompt_pwd -d 10) $normal ' ' (fish_vcs_prompt) $normal ' '\
     $prompt_status $suffix_color $suffix $normal ' '
 end
