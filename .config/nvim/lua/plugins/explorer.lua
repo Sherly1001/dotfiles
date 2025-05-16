@@ -5,11 +5,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
-      scroll = {
-        filter = function(_)
-          return not vim.g.neovide
-        end,
-      },
+      scroll = { enabled = false },
       indent = {
         animate = { enabled = false },
       },
