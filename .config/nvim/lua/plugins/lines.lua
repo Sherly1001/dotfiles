@@ -6,12 +6,13 @@ return {
       options = {
         mode = "both",
         separator_style = "slant",
-        -- always_show_bufferline = true,
+        always_show_bufferline = true,
       },
     },
     keys = {
       { "<a-s-h>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
       { "<a-s-l>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+      { "<leader><tab>c", "<cmd>windo bwipeout<cr>", desc = "Close tab and tab's buffers" },
     },
   },
   {
