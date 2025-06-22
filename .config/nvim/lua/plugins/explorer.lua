@@ -48,6 +48,15 @@ return {
             require("neo-tree.command").execute({ action = "close" })
           end,
         },
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.cmd([[
+              setlocal number
+              setlocal relativenumber
+            ]])
+          end,
+        },
       },
     },
   },
