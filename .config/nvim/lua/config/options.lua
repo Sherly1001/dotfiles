@@ -4,7 +4,6 @@
 
 local g = vim.g
 local opt = vim.opt
-local is_mac = vim.fn.has("unix") and vim.fn.system("uname -s"):gsub("%s+", "") == "Darwin"
 
 opt.clipboard = ""
 
@@ -28,8 +27,5 @@ if g.neovide then
   g.neovide_cursor_vfx_mode = "railgun"
   g.neovide_cursor_vfx_particle_density = 10.0
 
-  opt.guifont = "SauceCodePro Nerd Font Mono:h8"
-  if is_mac then
-    opt.guifont = "SauceCodePro Nerd Font Mono:h13"
-  end
+  opt.guifont = "SauceCodePro Nerd Font Mono:h12"
 end
