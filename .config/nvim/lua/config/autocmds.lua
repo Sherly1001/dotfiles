@@ -38,5 +38,5 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 
 vim.api.nvim_create_autocmd("VimLeave", {
   group = vim.api.nvim_create_augroup("RestoreCursorShape", { clear = true }),
-  command = "set guicursor=a:hor100",
+  command = "set guicursor=a:ver100-blinkwait300-blinkon200-blinkoff150",
 })

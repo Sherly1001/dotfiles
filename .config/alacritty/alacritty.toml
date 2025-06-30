@@ -42,7 +42,7 @@ vi_mode_style = "Block"
 
 [cursor.style]
 blinking = "On"
-shape = "Underline"
+shape = "Beam"
 
 [font]
 size = 9
