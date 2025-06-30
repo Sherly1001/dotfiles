@@ -45,7 +45,7 @@ blinking = "On"
 shape = "Beam"
 
 [font]
-size = 9
+size = 12
 
 [font.normal]
 family = "SauceCodePro Nerd Font Mono"
