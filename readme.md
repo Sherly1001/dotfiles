@@ -26,7 +26,7 @@ Goto [dependent packages](#dependent-packages) and download packages you want to
 
 - [noto-fonts](https://www.archlinux.org/packages/extra/any/noto-fonts)
 - [noto-fonts-cjk](https://www.archlinux.org/packages/extra/any/noto-fonts-cjk)
-- [SauceCodePro Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip)
+- [SauceCodePro Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.tar.xz)
 
 ### Picom
 
