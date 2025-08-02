@@ -104,7 +104,7 @@ fi
 
 if [[ -n $a ]] || [[ -n $f ]]; then
     mkdir -p ~/.local/share/fonts
-    tar xzvf ./fonts/SourceCodePro.tar.xz -C ~/.local/share/fonts
+    tar xvf ./fonts/SourceCodePro.tar.xz -C ~/.local/share/fonts
 fi
 
 if [[ -n $a ]] || [[ -n $i ]]; then
