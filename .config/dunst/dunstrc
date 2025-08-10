@@ -4,9 +4,9 @@
 monitor = 0
 follow = none
 width = 350
-height = 300
+height = (0, 300)
 origin = top-right
-offset = 10x50
+offset = (10, 10)
 
 scale = 0
 notification_limit = 0
@@ -17,18 +17,19 @@ progress_bar_frame_width = 0
 progress_bar_min_width = 150
 progress_bar_max_width = 350
 
+highlight = "#8c929c"
+
 indicate_hidden = yes
 
 transparency = 15
-separator_height = 5
+gap_size = 10
 
 padding = 10
 horizontal_padding = 10
 text_icon_padding = 0
 
-frame_width = 0
-frame_color = "#aaaaaa"
-separator_color = "#0000"
+frame_width = 2
+frame_color = "#282c34"
 
 sort = yes
 
@@ -62,7 +63,7 @@ always_run_script = true
 title = Dunst
 class = Dunst
 
-corner_radius = 6
+corner_radius = 10
 ignore_dbusclose = false
 force_xwayland = false
 force_xinerama = false
@@ -74,19 +75,18 @@ mouse_right_click = close_current
 [experimental]
 per_monitor_dpi = false
 
-
 [urgency_low]
-background = "#222222"
+background = "#222222cc"
 foreground = "#888888"
 timeout = 5
 
 [urgency_normal]
-background = "#222222"
+background = "#222222cc"
 foreground = "#ffffff"
 timeout = 5
 
 [urgency_critical]
-background = "#900000"
+background = "#900000cc"
 foreground = "#ffffff"
 frame_color = "#ff0000"
 timeout = 0
