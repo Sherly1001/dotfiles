@@ -15,6 +15,7 @@ for _, mode in pairs({ "i", "c", "t" }) do
   keymap(mode, "<d-v>", "<c-r><c-o>+", opts)
 end
 
+keymap("t", "<c-s-v>", '<c-\\><c-n>"+pi', opts)
 keymap("t", "<d-v>", '<c-\\><c-n>"+pi', opts)
 keymap("t", "<a-\\>", "<c-\\><c-n>", opts)
 keymap("t", "<a-p>", "<c-\\><c-n>pi", opts)
