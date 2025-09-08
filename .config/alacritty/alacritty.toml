@@ -1,40 +1,7 @@
 # see all configures in `man 5 alacritty`
 
-[colors.bright]
-black = "#5a5e66"
-blue = "#89cdff"
-cyan = "#74d4e0"
-green = "#b6d7a0"
-magenta = "#e4aafb"
-red = "#ff99a0"
-white = "#dde4f1"
-yellow = "#ffdd98"
-
-[colors.dim]
-black = "#14161a"
-blue = "#41679a"
-cyan = "#2c6d75"
-green = "#578a54"
-magenta = "#70508f"
-red = "#be5046"
-white = "#8c929c"
-yellow = "#d19a66"
-
-[colors.normal]
-black = "#282c34"
-blue = "#61afef"
-cyan = "#56b6c2"
-green = "#98c379"
-magenta = "#c678dd"
-red = "#e06c75"
-white = "#abb2bf"
-yellow = "#e5c07b"
-
-[colors.primary]
-background = "#282c34"
-foreground = "#abb2bf"
-bright_foreground = "#dde4f1"
-dim_foreground = "#8c929c"
+[general]
+import = ["~/.config/alacritty/tokyonight_moon.toml"]
 
 [cursor]
 unfocused_hollow = false

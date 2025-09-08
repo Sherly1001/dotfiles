@@ -2,6 +2,9 @@
 
 set fish_greeting
 
+set -l fish_theme ~/.config/fish/themes/tokyonight_moon.fish
+test -f $fish_theme && source $fish_theme
+
 set -l fish_setting ~/.config/fish/settings
 set -l fish_local_after "$fish_setting/local-after.fish"
 set -l fish_local_before "$fish_setting/local-before.fish"
