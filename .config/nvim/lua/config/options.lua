@@ -5,6 +5,9 @@
 local g = vim.g
 local opt = vim.opt
 
+opt.title = true
+opt.titlestring = [[%{fnamemodify(getcwd(), ':t') . (empty(expand('%:t')) ? '' : ' • ' . expand('%:t'))}]]
+
 opt.clipboard = ""
 
 opt.listchars = {
