@@ -3,6 +3,8 @@
 -- Add any additional keymaps here
 
 local keymap = vim.api.nvim_set_keymap
+local command = vim.api.nvim_create_user_command
+
 local opts = { noremap = true, silent = false }
 local opts_sl = { noremap = true, silent = true }
 
@@ -22,3 +24,15 @@ keymap("t", "<a-p>", "<c-\\><c-n>pi", opts)
 
 keymap("v", "<c-c>", '"+y', opts_sl)
 keymap("v", "<c-x>", '"+x', opts_sl)
+
+command("CopyFilePath", function()
+  local file_path = vim.fn.expand("%:p")
+  vim.fn.setreg("*", file_path)
+  print("Copied file path to clipboard: " .. file_path)
+end, {})
+
+command("CopyRelativeFilePath", function()
+  local file_path = vim.fn.expand("%")
+  vim.fn.setreg("*", file_path)
+  print("Copied relative file path to clipboard: " .. file_path)
+end, {})
