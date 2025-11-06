@@ -32,7 +32,7 @@ command("CopyFilePath", function()
 end, {})
 
 command("CopyRelativeFilePath", function()
-  local file_path = vim.fn.expand("%")
+  local file_path = vim.fn.expand("%:.")
   vim.fn.setreg("*", file_path)
   print("Copied relative file path to clipboard: " .. file_path)
 end, {})
