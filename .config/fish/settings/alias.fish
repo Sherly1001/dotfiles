@@ -12,6 +12,8 @@ alias dp "docker-compose"
 alias cm "cmake -B build -S ."
 alias cmb "cmake --build build"
 
+alias lg "lazygit"
+
 alias gco "git checkout"
 alias gcoo "gco master"
 alias gcm "git commit -m"
