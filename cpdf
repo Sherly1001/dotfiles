@@ -1,8 +1,10 @@
 #!/bin/bash
 
 post_install() {
-    pulseaudio --start
-    sudo chmod +s /usr/bin/light
+    cat <<END >~/.gtkrc-2.0
+gtk-theme-name="adw-gtk3-dark"
+gtk-icon-theme-name="Papirus-Dark"
+END
 }
 
 install_yay() {
@@ -20,52 +22,78 @@ pacman_dependencies=(
     noto-fonts-cjk
 
     # base
-    xorg
-    xorg-xinit
-    i3
-    bluez
-    polybar
-    firefox
-    bluez-utils
-    arc-gtk-theme
-    arc-icon-theme
+    hyprland
+    hyprpaper
+    wl-clipboard
+    fish
+    dunst
+    copyq
+    rofi
+    kitty
+    fcitx5
+    fcitx5-bamboo
+    fcitx5-configtool
+    libnotify
+    lsof
+    gnome-keyring
+    nvidia-open
+    nvidia-settings
+    power-profiles-daemon
+    qt5ct
+    qt6ct
+    qt5-wayland
+    qt6-wayland
+    adw-gtk-theme
+    papirus-icon-theme
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
 
     # volume
-    sox
-    alsa-utils
-    alsa-plugins
-    pulseaudio-alsa
-    pavucontrol
+    rtkit
+    pipewire
+    pipewire-jack
+    wireplumber
+    pipewire-alsa
+    pipewire-pulse
 
     # tools
-    feh
-    rofi
-    fish
-    copyq
-    xdotool
-    xbindkeys
-    neovim
-    neovide
-    alacritty
-    numlockx
-    flameshot
-
+    bluez
+    bluez-utils
+    brightnessctl
+    upower
+    gammastep
+    grim
+    slurp
+    htop
     jq
-    yad
-    socat
     unzip
     p7zip
-    light
+    fastfetch
+    lf
+    fd
     ripgrep
+    lazygit
+    ffmpeg
     imagemagick
     inotify-tools
 )
 
 yay_dependencies=(
+    # fonts
+    ttf-joypixels
+
     # base
-    picom-ftlabs-git
-    i3lock-color
     brave-bin
+    quickshell-git
+    adwaita-dark
+
+    # volume
+    pwvucontrol
+
+    # tools
+    asusctl
+    rog-control-center
 )
 
 usage() {
