@@ -2,14 +2,15 @@
 
 ## Screenshots
 
-![](./imgs/screenshots/img_1.jpg)
-![](./imgs/screenshots/img_2.jpg)
-![](./imgs/screenshots/img_3.jpg)
-![](./imgs/screenshots/img_4.jpg)
+![img 1](./imgs/screenshots/img_1.jpg)
+![img 2](./imgs/screenshots/img_2.jpg)
+![img 3](./imgs/screenshots/img_3.jpg)
+![img 4](./imgs/screenshots/img_4.jpg)
 
 ## Installation
 
 ### Auto install script
+
 ```sh
 git clone https://github.com/Sherly1001/dotfiles.git
 cd dotfiles
@@ -18,7 +19,7 @@ cd dotfiles
 
 ### Custom install
 
-Goto [dependent packages](#dependent-packages) and download packages you want to keep and copy corresponding configuration from [.config](./.config) directory.
+Go to [dependent packages](#dependent-packages) and download packages you want to keep and copy corresponding configuration from [.config](./.config) directory.
 
 ## Dependent packages
 
@@ -28,37 +29,33 @@ Goto [dependent packages](#dependent-packages) and download packages you want to
 - [noto-fonts-cjk](https://www.archlinux.org/packages/extra/any/noto-fonts-cjk)
 - [SauceCodePro Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.tar.xz)
 
-### Picom
+### Hyprland
 
-Install [picom-ftlabs-git](https://aur.archlinux.org/packages/picom-ftlabs-git) from aur.
+- [hyprland](https://archlinux.org/packages/extra/x86_64/hyprland/)
+- [hyprpaper](https://archlinux.org/packages/extra/x86_64/hyprpaper/)
+- [wl-clipboard](https://archlinux.org/packages/extra/x86_64/wl-clipboard/)
 
 ### Volume
 
-- [alsa-utils](https://archlinux.org/packages/extra/x86_64/alsa-utils/)
-- [alsa-plugins](https://archlinux.org/packages/extra/x86_64/alsa-plugins/)
-- [pulseaudio-alsa](https://archlinux.org/packages/extra/x86_64/pulseaudio-alsa/)
-- [pavucontrol](https://archlinux.org/packages/extra/x86_64/pavucontrol/)
-
-Start the PulseAudio daemon
-
-```
-pulseaudio --start
-```
+- [rtkit](https://archlinux.org/packages/extra/x86_64/rtkit/)
+- [pipewire](https://archlinux.org/packages/extra/x86_64/pipewire/)
+- [pipewire-jack](https://archlinux.org/packages/extra/x86_64/pipewire-jack/)
+- [wireplumber](https://archlinux.org/packages/extra/x86_64/wireplumber/)
+- [pipewire-alsa](https://archlinux.org/packages/extra/x86_64/pipewire-alsa/)
+- [pipewire-pulse](https://archlinux.org/packages/extra/x86_64/pipewire-pulse/)
+- [pwvucontrol](https://aur.archlinux.org/packages/pwvucontrol)
 
 _Optional_ Install [sox](https://archlinux.org/packages/extra/x86_64/sox/) to play sound when adjusting volume
 
-### Polybar
+### Quickshell
 
-- [polybar](https://archlinux.org/packages/extra/x86_64/polybar/)
-- [inotify-tools](https://archlinux.org/packages/extra/x86_64/inotify-tools/) to check brightness changes
+- [quickshell-git](https://aur.archlinux.org/packages/quickshell-git)
 
 ### Other tools
 
-- [alacritty](https://wiki.archlinux.org/title/Alacritty) - terminal
-- [numlockx](https://archlinux.org/packages/extra/x86_64/numlockx/) - auto turn numlock on
+- [kitty](https://wiki.archlinux.org/title/Kitty) - terminal
 - [copyq](https://archlinux.org/packages/extra/x86_64/copyq/) - clipboard history
-- [feh](https://wiki.archlinux.org/title/feh) - background settings
-- [flameshot](https://wiki.archlinux.org/title/Flameshot) - take screenshots
+- [grim](https://archlinux.org/packages/extra/x86_64/grim/) & [slurp](https://archlinux.org/packages/extra/x86_64/slurp/) - take screenshots
 - [dunst](https://wiki.archlinux.org/title/Dunst) - notification daemons
 - [rofi](https://wiki.archlinux.org/title/Rofi) - application launcher
-- [yad](https://archlinux.org/packages/extra/x86_64/yad/) - show polybar calendar
+- [brightnessctl](https://archlinux.org/packages/extra/x86_64/brightnessctl/) - brightness control
