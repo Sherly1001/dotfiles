@@ -6,10 +6,12 @@ post_install() {
 }
 
 install_yay() {
-    (cd /tmp
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si)
+    (
+        cd /tmp
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+    )
 }
 
 pacman_dependencies=(
@@ -79,11 +81,11 @@ END
 
 while getopts :abncfi opt; do
     case $opt in
-        a) a=1;;
-        c) c=1;;
-        f) f=1;;
-        i) i=1;;
-        *) usage
+    a) a=1 ;;
+    c) c=1 ;;
+    f) f=1 ;;
+    i) i=1 ;;
+    *) usage ;;
     esac
 done
 
@@ -91,14 +93,20 @@ if [[ -z $1 ]]; then usage; fi
 
 if [[ -n $a ]] || [[ -n $c ]]; then
     rm -fr ~/.xinitrc
-    xinit="`pwd`/.xinitrc"
-    (set -x; ln -sf "$xinit" ~)
+    xinit="$(pwd)/.xinitrc"
+    (
+        set -x
+        ln -sf "$xinit" ~
+    )
 
     mkdir -p ~/.config
-    for cfg in `ls .config`; do
-        config="`pwd`/.config/$cfg"
+    for cfg in $(ls .config); do
+        config="$(pwd)/.config/$cfg"
         eval "rm -fr ~/.config/$cfg"
-        (set -x; ln -sf "$config" ~/.config)
+        (
+            set -x
+            ln -sf "$config" ~/.config
+        )
     done
 fi
 
@@ -113,3 +121,5 @@ if [[ -n $a ]] || [[ -n $i ]]; then
     yay -S --noconfirm "${yay_dependencies[@]}"
     post_install
 fi
+
+# vi: sw=4 ts=4
