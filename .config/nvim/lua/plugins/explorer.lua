@@ -6,6 +6,15 @@ return {
       indent = {
         animate = { enabled = false },
       },
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            auto_close = true,
+          },
+          files = { hidden = true },
+        },
+      },
     },
   },
 }
