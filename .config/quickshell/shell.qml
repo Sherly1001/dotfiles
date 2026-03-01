@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 
 import Quickshell
 import Quickshell.Io
@@ -240,6 +241,188 @@ ShellRoot {
                             Audio.setVolume(newVolume / 100);
                         }
                     }
+                }
+            }
+
+            // bluetooth
+            ItemWithPopup {
+                id: bluetoothRoot
+
+                implicitWidth: bluetoothIcon.width
+                implicitHeight: bluetoothIcon.height
+
+                paddingTop: (root.height - bluetoothIcon.height) / 2
+                cornerSize: shellRoot.cornerSize
+
+                implicitPopupWidth: 320
+                implicitPopupHeight: 28 * (2 + (Bluetooth.devices?.values?.length ?? 0))
+
+                StyledText {
+                    id: bluetoothIcon
+                    color: Bluetooth.powered ? Appearance.colors.brightBlue : Appearance.colors.darkWhite
+                    text: Bluetooth.icon
+                }
+
+                popupChildren: Column {
+                    Control {
+                        leftPadding: 20
+                        implicitHeight: 28
+                        implicitWidth: bluetoothRoot.popupWidth
+
+                        contentItem: StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: btToggle.containsMouse ? Appearance.colors.yellow : (Bluetooth.powered ? Appearance.colors.brightBlue : Appearance.colors.darkWhite)
+                            text: (Bluetooth.powered ? '󰂯' : '󰂲') + '   Bluetooth ' + (Bluetooth.powered ? 'On' : 'Off')
+                        }
+
+                        MouseArea {
+                            id: btToggle
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: Bluetooth.togglePower()
+                        }
+                    }
+
+                    Control {
+                        leftPadding: 20
+                        implicitHeight: 28
+                        implicitWidth: bluetoothRoot.popupWidth
+                        enabled: Bluetooth.powered
+
+                        contentItem: Row {
+                            spacing: 6
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            readonly property color itemColor: {
+                                if (!Bluetooth.powered) return Appearance.colors.darkWhite;
+                                if (btScan.containsMouse) return Appearance.colors.yellow;
+                                return Bluetooth.scanning ? Appearance.colors.brightBlue : Appearance.colors.white;
+                            }
+
+                            StyledText {
+                                id: scanIcon
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: parent.itemColor
+                                text: Bluetooth.scanning ? '󰑓' : '󰑐'
+
+                                RotationAnimator {
+                                    target: scanIcon
+                                    from: 0
+                                    to: 360
+                                    duration: 1000
+                                    loops: Animation.Infinite
+                                    running: Bluetooth.scanning
+                                }
+                            }
+
+                            StyledText {
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: parent.itemColor
+                                text: 'Scan ' + (Bluetooth.scanning ? 'On' : 'Off')
+                            }
+                        }
+
+                        MouseArea {
+                            id: btScan
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Bluetooth.powered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: {
+                                if (Bluetooth.powered) Bluetooth.toggleScan();
+                            }
+                        }
+                    }
+
+                    Repeater {
+                        model: Bluetooth.devices
+
+                        Control {
+                            leftPadding: 20
+                            implicitHeight: 28
+                            implicitWidth: bluetoothRoot.popupWidth
+
+                            contentItem: Row {
+                                spacing: 6
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                readonly property color itemColor: btDevice.containsMouse ? Appearance.colors.yellow : (modelData.connected ? Appearance.colors.brightBlue : Appearance.colors.white)
+
+                                StyledText {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    color: parent.itemColor
+                                    text: modelData.connected ? '󰂱' : (modelData.paired ? '󰌗' : '󰂯')
+                                }
+
+                                IconImage {
+                                    id: deviceIconImg
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: 16
+                                    height: 16
+                                    visible: modelData.icon && status === Image.Ready
+                                    source: Quickshell.iconPath(modelData.icon)
+                                    layer.enabled: true
+                                    layer.effect: MultiEffect {
+                                        colorization: 1.0
+                                        colorizationColor: deviceIconImg.parent.itemColor
+                                    }
+                                }
+
+                                StyledText {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    color: parent.itemColor
+                                    text: {
+                                        const battery = (modelData.connected && modelData.batteryAvailable)
+                                            ? '  󰁹 ' + Math.round(modelData.battery * 100) + '%'
+                                            : '';
+                                        return modelData.name + battery;
+                                    }
+                                }
+
+                                StyledText {
+                                    id: connectingIcon
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    color: parent.itemColor
+                                    visible: Bluetooth.isTransitioning(modelData)
+                                    text: '󰑓'
+
+                                    RotationAnimator {
+                                        target: connectingIcon
+                                        from: 0
+                                        to: 360
+                                        duration: 1000
+                                        loops: Animation.Infinite
+                                        running: parent.visible
+                                    }
+                                }
+                            }
+
+                            MouseArea {
+                                id: btDevice
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                onClicked: event => {
+                                    if (event.button === Qt.LeftButton) {
+                                        if (modelData.connected) {
+                                            modelData.disconnect();
+                                        } else if (modelData.paired) {
+                                            modelData.connect();
+                                        } else {
+                                            modelData.pair();
+                                        }
+                                    } else {
+                                        modelData.forget();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                onHoverActived: hovered => {
+                    if (!hovered && Bluetooth.scanning) Bluetooth.toggleScan();
                 }
             }
 

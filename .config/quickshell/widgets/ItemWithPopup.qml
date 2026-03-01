@@ -40,6 +40,12 @@ Item {
         }
     }
 
+    onPopupHeightChanged: {
+        if (hoverActive && popupLoader.item) {
+            popupLoader.item.implicitHeight = popupHeight;
+        }
+    }
+
     HoverHandler {
         id: rootHover
         cursorShape: Qt.PointingHandCursor
@@ -79,11 +85,6 @@ Item {
             HoverHandler {
                 id: popupLoaderHover
             }
-
-            // Rectangle {
-            //   anchors.fill: parent
-            //   color: Appearance.colors.blue
-            // }
 
             UnderBar {
                 isSnapedRight: root.overRight >= 0
