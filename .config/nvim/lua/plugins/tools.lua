@@ -92,4 +92,16 @@ return {
     end,
     ft = { "markdown" },
   },
+  {
+    "coder/claudecode.nvim",
+    cmd = {
+      "ClaudeCode",
+      "ClaudeCodeFocus",
+      "ClaudeCodeAdd",
+      "ClaudeCodeTreeAdd",
+      "ClaudeCodeSend",
+      "ClaudeCodeDiffAccept",
+      "ClaudeCodeDiffDeny",
+    },
+  },
 }
