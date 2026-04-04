@@ -14,6 +14,8 @@ alias cmb "cmake --build build"
 
 alias lg "lazygit"
 
+alias cl "claude"
+
 alias gco "git checkout"
 alias gcoo "gco master"
 alias gcm "git commit -m"
