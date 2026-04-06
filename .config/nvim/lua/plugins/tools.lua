@@ -94,6 +94,19 @@ return {
   },
   {
     "coder/claudecode.nvim",
+    opts = {
+      terminal = {
+        split_width_percentage = 0.35,
+      },
+    },
+    keys = {
+      {
+        "<a-o>",
+        "<cmd>ClaudeCode<cr>",
+        desc = "Toggle Claude Code",
+        mode = { "n", "t" },
+      },
+    },
     cmd = {
       "ClaudeCode",
       "ClaudeCodeFocus",

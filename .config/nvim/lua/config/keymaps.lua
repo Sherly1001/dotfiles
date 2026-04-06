@@ -25,9 +25,6 @@ keymap("t", "<a-p>", "<c-\\><c-n>pi", opts)
 keymap("t", "<a-k>", "<c-k>", opts_sl)
 keymap("t", "<a-l>", "<c-l>", opts_sl)
 
-keymap("n", "<a-o>", "<cmd>ClaudeCode<cr>", opts_sl)
-keymap("t", "<a-o>", "<cmd>ClaudeCode<cr>", opts_sl)
-
 keymap("v", "<c-c>", '"+y', opts_sl)
 keymap("v", "<c-x>", '"+x', opts_sl)
 
