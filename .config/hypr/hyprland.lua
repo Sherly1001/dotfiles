@@ -165,6 +165,22 @@ hl.gesture({
 	action = "workspace",
 })
 
+hl.gesture({
+	fingers = 3,
+	direction = "up",
+	action = function()
+		hl.exec_cmd(menu)
+	end,
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "down",
+	action = function()
+		hl.dispatch(hl.dsp.workspace.toggle_special("magic"))
+	end,
+})
+
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + Return", function()
