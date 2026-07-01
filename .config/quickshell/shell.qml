@@ -107,9 +107,9 @@ ShellRoot {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if (modelData.name.startsWith('special:')) {
-                                Hyprland.dispatch('togglespecialworkspace ' + modelData.name.slice('special:'.length));
+                                Hyprland.dispatch(`hl.dsp.workspace.toggle_special("${modelData.name.slice('special:'.length)}")`);
                             } else {
-                                Hyprland.dispatch('workspace ' + modelData.id);
+                                Hyprland.dispatch(`hl.dsp.focus({ workspace = ${modelData.id} })`);
                             }
                         }
                     }
