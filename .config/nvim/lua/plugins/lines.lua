@@ -13,8 +13,12 @@ return {
     keys = {
       { "<a-s-h>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
       { "<a-s-l>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+      { "<c-k>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+      { "<c-j>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
       { "<c-s-h>", "<cmd>tabmove -1<cr>", desc = "Move tab prev" },
       { "<c-s-l>", "<cmd>tabmove +1<cr>", desc = "Move tab next" },
+      { "<a-s-k>", "<cmd>tabmove -1<cr>", desc = "Move tab prev" },
+      { "<a-s-j>", "<cmd>tabmove +1<cr>", desc = "Move tab next" },
       { "<leader><tab>c", "<cmd>windo bwipeout<cr>", desc = "Close tab and tab's buffers" },
     },
   },
