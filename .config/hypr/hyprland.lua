@@ -376,3 +376,9 @@ hl.window_rule({
 	center = true,
 	size = { "(monitor_w*0.5)", "(monitor_h*0.5)" },
 })
+
+hl.window_rule({
+	name = "colored pinned window",
+	match = { pin = true },
+	border_color = "rgb(ff757f) rgb(c53b53)",
+})
