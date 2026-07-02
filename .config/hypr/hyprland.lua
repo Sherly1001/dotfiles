@@ -232,6 +232,16 @@ hl.define_submap("resize", function()
 	end)
 end)
 
+-- Toggle focus between floating and tiled windows
+hl.bind(mainMod .. " + U", function()
+	local win = hl.get_active_window()
+	if win and win.floating then
+		hl.dispatch(hl.dsp.focus({ window = "tiled" }))
+	else
+		hl.dispatch(hl.dsp.focus({ window = "floating" }))
+	end
+end)
+
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
