@@ -24,6 +24,8 @@ pacman_dependencies=(
     # base
     hyprland
     hyprpaper
+    hypridle
+    hyprlock
     wl-clipboard
     fish
     dunst
