@@ -5,6 +5,13 @@ post_install() {
 gtk-theme-name="adw-gtk3-dark"
 gtk-icon-theme-name="Papirus-Dark"
 END
+
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf >/dev/null <<END
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
+END
 }
 
 install_yay() {

@@ -516,7 +516,7 @@ ShellRoot {
                 cornerSize: shellRoot.cornerSize
 
                 implicitPopupWidth: 150
-                implicitPopupHeight: 28 * 4
+                implicitPopupHeight: 28 * 5
 
                 StyledText {
                     id: poweroff
@@ -547,6 +547,11 @@ ShellRoot {
                                 icon: '󰒲',
                                 label: 'Sleep',
                                 command: ['systemctl', 'suspend']
+                            },
+                            {
+                                icon: '󰌾',
+                                label: 'Lock',
+                                command: ['hyprlock']
                             },
                             {
                                 icon: '',

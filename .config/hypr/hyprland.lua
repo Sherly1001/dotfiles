@@ -28,6 +28,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5 -dr")
 	hl.exec_cmd("copyq exit; copyq --start-server")
 	hl.exec_cmd("dunst")
+
+	hl.exec_cmd("pidof hyprlock || hyprlock")
 end)
 
 hl.on("keybinds.submap", function(name)
