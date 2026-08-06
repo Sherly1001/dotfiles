@@ -256,12 +256,13 @@ hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
--- Swap window with mainMod + SHIFT + arrow keys
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.swap({ direction = "down" }))
+-- Move window with mainMod + SHIFT + arrow keys
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 
+-- Swap window with mainMod + SHIFT + arrow keys
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "up" }))
@@ -361,6 +362,26 @@ hl.window_rule({
 	name = "disable-opacity-on-meet",
 	match = { title = "Meet - .*" },
 	opacity = "1 override",
+})
+
+hl.window_rule({
+	name = "pictrue in pictrue",
+	match = { initial_title = "Picture in picture" },
+
+	pin = true,
+	float = true,
+	size = { 284, 160 },
+	move = { 1520, 231 },
+})
+
+hl.window_rule({
+	name = "messenger call",
+	match = { title = "Messenger call - .*" },
+
+	pin = true,
+	float = true,
+	size = { 179, 351 },
+	move = { 1324, 235 },
 })
 
 hl.window_rule({
