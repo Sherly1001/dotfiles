@@ -86,17 +86,27 @@ ShellRoot {
                     implicitHeight: 30
                     implicitWidth: workspaceText.width
 
-                    StyledText {
+                    Row {
                         id: workspaceText
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: Appearance.fonts.pixelSize.normal
-                        color: {
+
+                        readonly property color fgColor: {
                             modelData.focused ? (workspaceMouseArea.containsMouse ? Appearance.colors.brightYellow : Appearance.colors.yellow) : (workspaceMouseArea.containsMouse ? Appearance.colors.white : Appearance.colors.darkWhite);
                         }
-                        text: {
-                            const name = (modelData.name.startsWith('special:') ? modelData.name.slice('special:'.length) : modelData.name) + '  ';
-                            const icon = Hyprland.icons[modelData.id - 1] ?? Hyprland.specialIcon;
-                            return name + icon;
+
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: Appearance.fonts.pixelSize.normal
+                            color: workspaceText.fgColor
+                            text: (modelData.name.startsWith('special:') ? modelData.name.slice('special:'.length) : modelData.name) + '  '
+                        }
+
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.family: Appearance.fonts.families.icon
+                            font.pixelSize: Appearance.fonts.pixelSize.small
+                            color: workspaceText.fgColor
+                            text: Hyprland.icons[modelData.id - 1] ?? Hyprland.specialIcon
                         }
                     }
 

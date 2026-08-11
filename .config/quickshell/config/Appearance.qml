@@ -41,6 +41,7 @@ Singleton {
         property QtObject families: QtObject {
             property string sans: 'Noto Sans'
             property string mono: 'SauceCodePro Nerd Font Mono'
+            property string icon: 'SauceCodePro Nerd Font'
         }
 
         property QtObject pixelSize: QtObject {
